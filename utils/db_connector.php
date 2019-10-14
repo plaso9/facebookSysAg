@@ -1,20 +1,20 @@
 <?php
 
 class DatabaseConnection{
-  static $dbhost = "localhost";
-  static $dbuser = "root";
-  static $dbpass = "";
-  static $db = "sistemiagenti_db";
-  private static $connection;
+  static $_DB_HOST = "localhost";
+  static $_DB_USER = "root";
+  static $_DB_PASSWORD = "";
+  static $_DB_NAME = "sistemiagenti_db";
+  private static $_CONNECTION;
 
   function __construct() {
     self::connect();
   }
-  
+
   static function connect() {
     try {
-      self::$connection = new PDO("mysql:host=" . self::$dbhost . ";dbname=" . self::$db, self::$dbuser, self::$dbpass);
-      self::$connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      self::$_CONNECTION = new PDO("mysql:host=" . self::$_DB_HOST . ";dbname=" . self::$_DB_NAME, self::$_DB_USER, self::$_DB_PASSWORD);
+      self::$_CONNECTION->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     } catch (PDOException $e) {
       echo "Connection failed: " . $e->getMessage();
       }
@@ -22,7 +22,7 @@ class DatabaseConnection{
 
   function query($sql){
     try {
-      self::$connection->exec($sql);
+      self::$_CONNECTION->exec($sql);
     } catch(PDOException $e)
     {
     echo $sql . "<br>" . $e->getMessage();
@@ -31,7 +31,7 @@ class DatabaseConnection{
 
   function insert($sql){
     try {
-      self::$connection->exec($sql);
+      self::$_CONNECTION->exec($sql);
     } catch(PDOException $e)
     {
     echo $sql . "<br>" . $e->getMessage();
@@ -40,7 +40,7 @@ class DatabaseConnection{
 
   function select($sql){
     try {
-      $stmt = self::$connection->prepare($sql);
+      $stmt = self::$_CONNECTION->prepare($sql);
       $stmt->execute();
       $result = $stmt->fetchAll();
     } catch(PDOException $e)
@@ -51,7 +51,7 @@ class DatabaseConnection{
   }
 
   function closeConnection(){
-    self::$connection = null;
+    self::$_CONNECTION = null;
   }
 }
 
