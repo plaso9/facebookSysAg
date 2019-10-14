@@ -62,7 +62,7 @@ $me = $response->getGraphUser();
 
 try {
   // Returns a `FacebookFacebookResponse` object
-  $response = $fb->get('/me?fields=likes{category}', $accessToken);
+  $response = $fb->get('/me/likes?fields=category&limit=100', $accessToken);
 } catch(FacebookExceptionsFacebookResponseException $e) {
   echo 'Graph returned an error: ' . $e->getMessage();
   exit;
@@ -71,23 +71,23 @@ try {
   exit;
 }
 
-$graphNode = $response->getGraphNode()->getField('likes');
+$graphEdge = $response->getGraphEdge();
 
 print "Benvenuto " . $me->getName() . "\n";
 
-if ($graphNode === null) {
+if ($graphEdge === null) {
   echo "Ops, devi accettare che l'app acceda ai tuoi likes";
 } else {
   print "<h2> Interessi: </h2>";
   
   $category=array();
   
-  foreach ($graphNode as $value) {
+  foreach ($graphEdge as $value) {
     array_push($category, $value['category']);
   }
   
   $vals = array_count_values($category);
-  
+
   foreach($vals as $key => $value){
     echo $key . " - " . $value . "<br>";
   }
