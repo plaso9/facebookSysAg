@@ -26,8 +26,6 @@ foreach ($vals as $key => $value) {
     if($value == 1) {
         array_push($fourthRange, $key);
     }
-
-   
 }
 
 foreach ($firstRange as $key => $value) {
