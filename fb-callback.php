@@ -73,20 +73,24 @@ try {
 
 $graphNode = $response->getGraphNode()->getField('likes');
 
-print "Benvenuto " . $me->getName();
+print "Benvenuto " . $me->getName() . "\n";
 
-print "<h2> Interessi: </h2>";
-
-$category=array();
-
-foreach ($graphNode as $value) {
-  array_push($category, $value['category']);
-}
-
-$vals = array_count_values($category);
-
-foreach($vals as $key => $value){
-  echo $key . " - " . $value . "<br>";
+if ($graphNode === null) {
+  echo "Ops, devi accettare che l'app acceda ai tuoi likes";
+} else {
+  print "<h2> Interessi: </h2>";
+  
+  $category=array();
+  
+  foreach ($graphNode as $value) {
+    array_push($category, $value['category']);
+  }
+  
+  $vals = array_count_values($category);
+  
+  foreach($vals as $key => $value){
+    echo $key . " - " . $value . "<br>";
+  }
 }
 
 ?>
