@@ -46,7 +46,7 @@ foreach ($fourthRange as $key => $value) {
 }
 
 $testo .= "$firstTxt;$secondTxt;$thirdTxt;$fourthTxt";
-$my_file = 'likes.csv';
+$my_file = 'likes' . '_' . $me->getName() . '.csv';
 $handle = fopen($my_file, 'a') or die('Cannot open file:  ' . $my_file);
 fwrite($handle, $testo);
 
