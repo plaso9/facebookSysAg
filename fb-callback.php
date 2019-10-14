@@ -1,5 +1,10 @@
 <?php
+include ('utils/db_connector.php');
 require_once __DIR__ . '/vendor/autoload.php';
+
+$db_connection = new DatabaseConnection();
+
+
 if(!session_id()) {
     session_start();
 }
@@ -38,30 +43,24 @@ if (! isset($accessToken)) {
 }
 
 // Logged in
-// echo '<h3>Access Token</h3>';
-// var_dump($accessToken->getValue());
 
 $_SESSION['fb_access_token'] = (string) $accessToken;
 
 try {
-  // Get the \Facebook\GraphNodes\GraphUser object for the current user.
-  // If you provided a 'default_access_token', the '{access-token}' is optional.
   $response = $fb->get('/me', $accessToken);
 } catch(\Facebook\Exceptions\FacebookResponseException $e) {
-  // When Graph returns an error
   echo 'Graph returned an error: ' . $e->getMessage();
   exit;
 } catch(\Facebook\Exceptions\FacebookSDKException $e) {
-  // When validation fails or other local issues
   echo 'Facebook SDK returned an error: ' . $e->getMessage();
   exit;
 }
 
 $me = $response->getGraphUser();
 
-
 try {
-  // Returns a `FacebookFacebookResponse` object
+  //   $response = $fb->get('/me?fields=likes{category,description,about},about,address,birthday,education,email,favorite_teams,favorite_athletes,political,relationship_status,religion,hometown,work,gender,photos{picture},posts{link,created_time,description,id,message}', $accessToken);
+
   $response = $fb->get('/me/likes?fields=category&limit=100', $accessToken);
 } catch(FacebookExceptionsFacebookResponseException $e) {
   echo 'Graph returned an error: ' . $e->getMessage();
@@ -75,23 +74,41 @@ $graphEdge = $response->getGraphEdge();
 
 print "Benvenuto " . $me->getName() . "\n";
 
+$user_id = (int) $me->getId();
+$user_name = $me->getName();
+
+$db_connection->insert("INSERT INTO user(id_user, nome) VALUES ($user_id, '$user_name')");
+
 if ($graphEdge === null) {
   echo "Ops, devi accettare che l'app acceda ai tuoi likes";
 } else {
   print "<h2> Interessi: </h2>";
-  
+
   $category=array();
-  
+
   foreach ($graphEdge as $value) {
     array_push($category, $value['category']);
   }
-  
+
   $vals = array_count_values($category);
 
   foreach($vals as $key => $value){
-    echo $key . " - " . $value . "<br>";
+    //echo $key . " - " . $value . "<br>";
+    $db_connection->insert("INSERT INTO likes(nome_categoria, counter, user_id) VALUES ('$key', $value, $user_id)");
   }
   require_once("fb-export.php");
 }
+
+
+$result = $db_connection->select("SELECT nome_categoria, counter, user_id FROM likes ORDER BY counter DESC LIMIT 5");
+
+foreach ($result as $row) {
+    echo $row['nome_categoria'] . " " . $row['counter'] ."<br />\n";
+}
+
+$db_connection->closeConnection();
+
+
+
 
 ?>
