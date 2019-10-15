@@ -27,7 +27,7 @@ $db_connection->closeDbConnection();
 
 
 function saveUserInfo($id, $info, $db){
-  $birthday = $info->getField('birthday')->format('d/m/Y');
+  // $birthday = $info->getField('birthday')->format('d/m/Y');
   $email = $info->getField('email');
   $hometown = $info->getField('hometown')['name'];
   $gender = $info->getField('gender');
