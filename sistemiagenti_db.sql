@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Ott 14, 2019 alle 22:48
+-- Creato il: Ott 15, 2019 alle 10:43
 -- Versione del server: 10.1.37-MariaDB
 -- Versione PHP: 7.2.12
 
@@ -25,6 +25,28 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Struttura della tabella `favorite_athletes`
+--
+
+CREATE TABLE `favorite_athletes` (
+  `name` varchar(100) NOT NULL,
+  `user_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `football_team`
+--
+
+CREATE TABLE `football_team` (
+  `name` varchar(100) NOT NULL,
+  `user_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Struttura della tabella `likes`
 --
 
@@ -37,12 +59,27 @@ CREATE TABLE `likes` (
 -- --------------------------------------------------------
 
 --
+-- Struttura della tabella `music`
+--
+
+CREATE TABLE `music` (
+  `name` varchar(100) NOT NULL,
+  `user_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Struttura della tabella `user`
 --
 
 CREATE TABLE `user` (
   `id_user` int(30) NOT NULL,
-  `nome` varchar(50) NOT NULL
+  `nome` varchar(50) NOT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `birthday` varchar(50) DEFAULT NULL,
+  `hometown` varchar(100) DEFAULT NULL,
+  `gender` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -50,10 +87,31 @@ CREATE TABLE `user` (
 --
 
 --
+-- Indici per le tabelle `favorite_athletes`
+--
+ALTER TABLE `favorite_athletes`
+  ADD PRIMARY KEY (`name`,`user_id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
+-- Indici per le tabelle `football_team`
+--
+ALTER TABLE `football_team`
+  ADD PRIMARY KEY (`name`,`user_id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
 -- Indici per le tabelle `likes`
 --
 ALTER TABLE `likes`
   ADD PRIMARY KEY (`user_id`,`nome_categoria`);
+
+--
+-- Indici per le tabelle `music`
+--
+ALTER TABLE `music`
+  ADD PRIMARY KEY (`name`,`user_id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indici per le tabelle `user`
@@ -66,10 +124,28 @@ ALTER TABLE `user`
 --
 
 --
+-- Limiti per la tabella `favorite_athletes`
+--
+ALTER TABLE `favorite_athletes`
+  ADD CONSTRAINT `favorite_athletes_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id_user`);
+
+--
+-- Limiti per la tabella `football_team`
+--
+ALTER TABLE `football_team`
+  ADD CONSTRAINT `football_team_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id_user`);
+
+--
 -- Limiti per la tabella `likes`
 --
 ALTER TABLE `likes`
   ADD CONSTRAINT `likes_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id_user`);
+
+--
+-- Limiti per la tabella `music`
+--
+ALTER TABLE `music`
+  ADD CONSTRAINT `music_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id_user`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

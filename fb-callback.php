@@ -7,12 +7,14 @@ $facebook = new FacebookManager();
 
 $me = $facebook->getUserInfo();
 $user_likes_edge = $facebook->getUserLikes();
+$me_edge = $facebook->getUser();
 
 print "Benvenuto " . $me->getName() . "\n";
 
 $user_id = (int) $me->getId();
 $user_name = $me->getName();
 $db_connection->createUser($user_id, $user_name);
+saveUserInfo($user_id, $me_edge, $db_connection);
 
 addUserLikes($user_likes_edge, $db_connection, $user_id);
 
@@ -23,6 +25,21 @@ require_once("fb-export.php");
 
 $db_connection->closeDbConnection();
 
+
+function saveUserInfo($id, $info, $db){
+  $birthday = $info->getField('birthday')->format('d/m/Y');
+  $email = $info->getField('email');
+  $hometown = $info->getField('hometown')['name'];
+  $gender = $info->getField('gender');
+  $favorite_teams = $info->getField('favorite_teams');
+  $favorite_athletes = $info->getField('favorite_athletes');
+  //$photos = $info->getField('photos');
+  //$picture = $info->getField('picture');
+  $music = $info->getField('music');
+
+  $db->updateUser($id, $birthday, $email, $hometown, $gender, $favorite_teams, $favorite_athletes, $music);
+
+}
 
 
 function printLikes($likes){

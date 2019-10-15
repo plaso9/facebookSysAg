@@ -71,7 +71,6 @@ class FacebookManager{
   //Ritorna GraphEdge object con i like alle pagine dell'utente
   function getUserLikes(){
     try {
-      //$response = $fb->get('/me?fields=likes{category,description,about},about,address,birthday,education,email,favorite_teams,favorite_athletes,political,relationship_status,religion,hometown,work,gender,photos{picture},posts{link,created_time,description,id,message}', self::getAccessToken());
       $response = self::$_FACEBOOK->get('/me/likes?fields=category,description,about&limit=100', self::getAccessToken());
     } catch(FacebookExceptionsFacebookResponseException $e) {
       echo 'Graph returned an error: ' . $e->getMessage();
@@ -82,6 +81,21 @@ class FacebookManager{
     }
 
     return $response->getGraphEdge();
+  }
+
+  //Ritorna le informazioni dell'utente loggato
+  function getUser(){
+    try {
+      $response = self::$_FACEBOOK->get('/me/?fields=birthday,email,hometown,gender,favorite_teams,favorite_athletes,photos,picture,music', self::getAccessToken());
+    } catch(FacebookExceptionsFacebookResponseException $e) {
+      echo 'Graph returned an error: ' . $e->getMessage();
+      exit;
+    } catch(FacebookExceptionsFacebookSDKException $e) {
+      echo 'Facebook SDK returned an error: ' . $e->getMessage();
+      exit;
+    }
+
+    return $response->getGraphNode();
   }
 
 

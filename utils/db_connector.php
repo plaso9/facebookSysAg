@@ -11,11 +11,11 @@ class DatabaseConnection{
     self::connect();
   }
 
-  static function connect() {
+  static function connect(){
     try {
       self::$_CONNECTION = new PDO("mysql:host=" . self::$_DB_HOST . ";dbname=" . self::$_DB_NAME, self::$_DB_USER, self::$_DB_PASSWORD);
       self::$_CONNECTION->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    } catch (PDOException $e) {
+    } catch (PDOException $e){
       echo "Connection failed: " . $e->getMessage();
       }
     }
@@ -23,18 +23,26 @@ class DatabaseConnection{
   function query($sql){
     try {
       self::$_CONNECTION->exec($sql);
-    } catch(PDOException $e)
-    {
-    echo $sql . "<br>" . $e->getMessage();
+    } catch(PDOException $e){
+        //echo $sql . "<br>" . $e->getMessage();
     }
   }
 
   function insert($sql){
     try {
       self::$_CONNECTION->exec($sql);
-    } catch(PDOException $e)
-    {
-    echo $sql . "<br>" . $e->getMessage();
+    } catch(PDOException $e){
+        //echo $sql . "<br>" . $e->getMessage();
+    }
+  }
+
+  function update($sql){
+    try {
+      $stmt = self::$_CONNECTION->prepare($sql);
+      $stmt->execute();
+
+    } catch(PDOException $e){
+        //echo $sql . "<br>" . $e->getMessage();
     }
   }
 
@@ -43,9 +51,8 @@ class DatabaseConnection{
       $stmt = self::$_CONNECTION->prepare($sql);
       $stmt->execute();
       $result = $stmt->fetchAll();
-    } catch(PDOException $e)
-    {
-    echo $sql . "<br>" . $e->getMessage();
+    } catch(PDOException $e){
+        //echo $sql . "<br>" . $e->getMessage();
     }
     return $result;
   }
