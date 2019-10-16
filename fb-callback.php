@@ -11,7 +11,8 @@ $me_edge = $facebook->getUser();
 
 print "Benvenuto " . $me->getName() . "\n";
 
-$user_id = (int) $me->getId();
+//$user_id = (int) $me->getId();
+$user_id = $me->getId();
 $user_name = $me->getName();
 $db_connection->createUser($user_id, $user_name);
 saveUserInfo($user_id, $me_edge, $db_connection);

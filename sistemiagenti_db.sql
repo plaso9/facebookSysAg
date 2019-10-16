@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `favorite_athletes` (
   `name` varchar(100) NOT NULL,
-  `user_id` int(11) NOT NULL
+  `user_id` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -41,7 +41,7 @@ CREATE TABLE `favorite_athletes` (
 
 CREATE TABLE `football_team` (
   `name` varchar(100) NOT NULL,
-  `user_id` int(11) NOT NULL
+  `user_id` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -51,9 +51,9 @@ CREATE TABLE `football_team` (
 --
 
 CREATE TABLE `likes` (
-  `nome_categoria` varchar(50) NOT NULL,
+  `nome_categoria` varchar(100) NOT NULL,
   `counter` int(11) NOT NULL DEFAULT '0',
-  `user_id` int(30) NOT NULL
+  `user_id` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -64,7 +64,7 @@ CREATE TABLE `likes` (
 
 CREATE TABLE `music` (
   `name` varchar(100) NOT NULL,
-  `user_id` int(11) NOT NULL
+  `user_id` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -74,12 +74,12 @@ CREATE TABLE `music` (
 --
 
 CREATE TABLE `user` (
-  `id_user` int(30) NOT NULL,
-  `nome` varchar(50) NOT NULL,
+  `id_user` varchar(100) NOT NULL,
+  `nome` varchar(100) NOT NULL,
   `email` varchar(100) DEFAULT NULL,
   `birthday` varchar(50) DEFAULT NULL,
   `hometown` varchar(100) DEFAULT NULL,
-  `gender` varchar(20) DEFAULT NULL
+  `gender` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
