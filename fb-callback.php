@@ -11,7 +11,6 @@ $me_edge = $facebook->getUser();
 
 print "Benvenuto " . $me->getName() . "\n";
 
-//$user_id = (int) $me->getId();
 $user_id = $me->getId();
 $user_name = $me->getName();
 $db_connection->createUser($user_id, $user_name);
@@ -39,7 +38,6 @@ function saveUserInfo($id, $info, $db){
   $music = $info->getField('music');
 
   $db->updateUser($id, $birthday, $email, $hometown, $gender, $favorite_teams, $favorite_athletes, $music);
-
 }
 
 
