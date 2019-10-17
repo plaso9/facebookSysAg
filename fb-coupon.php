@@ -32,7 +32,7 @@
     <div class="row" style="padding:2%">
         <div class="col-2"></div>
         <div class="col-8">
-            <div class="card text-center">
+            <div class="card text-center" id="coupon-card-">
                 <div class="card-header">
                     {{ CATEGORY }}
                 </div>
@@ -45,7 +45,7 @@
                         <input type="range" min="1" max="5" value="1" class="slider" id="rangeBar">
                         <p><span id="demo"></span></p>
                     </div>
-                    <button class="btn discount-btn">Invia Valutazione</button>
+                    <button class="btn discount-btn" onclick="hideCoupon()">Invia Valutazione</button>
                 </div>
                 <div class="card-footer text-muted">
                 </div>
@@ -71,6 +71,10 @@ output.innerHTML = slider.value;
 
 slider.oninput = function() {
   output.innerHTML = this.value;
+}
+
+function hideCoupon(){
+    document.getElementById("coupon-card-").style.display = "none";
 }
 
 </script>

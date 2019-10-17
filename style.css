@@ -43,6 +43,10 @@
     color : #FFFFFF;   
     background-color :#7a2df2
   }
+  .discount-btn:hover{
+    color : #FFFFFF;   
+    background-color :#b38eed
+  }
   .footer {
     clear: both;
     height: 150px;
