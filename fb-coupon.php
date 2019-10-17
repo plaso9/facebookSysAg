@@ -1,7 +1,6 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="style.css">
 
-
 <!-- Just an image -->
 <nav class="navbar navbar-expand-lg navbar-light discount-background">
     <a class="navbar-brand" href="#">
@@ -29,23 +28,24 @@
 </nav>
 
 <div class="container" style="max-width: inherit;">
+<?php foreach ($top_like as $key => $value) : ?>
     <div class="row" style="padding:2%">
         <div class="col-2"></div>
         <div class="col-8">
-            <div class="card text-center" id="coupon-card-">
+            <div class="card text-center" id="coupon-card-<?= $value["nome_categoria"] ?>">
                 <div class="card-header">
-                    {{ CATEGORY }}
+                    <p><b><?= $value["nome_categoria"] ?></b></p>
                 </div>
                 <div class="card-body">
                     <h5 class="card-title">Ciao, abbiamo cura dei nostri consumatori ed abbiamo pensato di fornirti questo coupon</h5>
                     <p class="card-text">Speriamo tu ne sia contento, e che possa usufruirne</p>
-                    <p class="card-text"><b>{{COUPON NAME}}</b></p>
+                    <p class="card-text"><b><?= generateCoupon($value["nome_categoria"]) ?></b></p>
                     <p class="card-text">Segna l'indice di gradimento</p>
                     <div class="slidecontainer">
                         <input type="range" min="1" max="5" value="1" class="slider" id="rangeBar">
                         <p><span id="demo"></span></p>
                     </div>
-                    <button class="btn discount-btn" onclick="hideCoupon()">Invia Valutazione</button>
+                    <button class="btn discount-btn" onclick="hideCoupon('<?= $value['nome_categoria'] ?>')">Invia Valutazione</button>
                 </div>
                 <div class="card-footer text-muted">
                 </div>
@@ -53,6 +53,7 @@
         </div>
         <div class="col-2"></div>
     </div>
+<?php endforeach; ?>
 </div>
 <footer class="footer discount-background">
     <div class="container" style="max-width: inherit;">
@@ -73,8 +74,9 @@ slider.oninput = function() {
   output.innerHTML = this.value;
 }
 
-function hideCoupon(){
-    document.getElementById("coupon-card-").style.display = "none";
+function hideCoupon(category_name){
+    var el = "coupon-card-" + category_name;
+    document.getElementById(el).style.display = "none";
 }
 
 </script>

@@ -9,7 +9,7 @@ $me = $facebook->getUserInfo();
 $user_likes_edge = $facebook->getUserLikes();
 $me_edge = $facebook->getUser();
 
-print "Benvenuto " . $me->getName() . "\n";
+// print "Benvenuto " . $me->getName() . "\n";
 
 $user_id = $me->getId();
 $user_name = $me->getName();
@@ -19,9 +19,10 @@ saveUserInfo($user_id, $me_edge, $db_connection);
 addUserLikes($user_likes_edge, $db_connection, $user_id);
 
 $top_like = $db_connection->getTopUserLikes();
-printLikes($top_like);
+// printLikes($top_like);
 
 // require_once("fb-export.php");
+require_once("fb-coupon.php");
 
 $db_connection->closeDbConnection();
 
@@ -47,13 +48,18 @@ function printLikes($likes){
   }
 }
 
+function generateCoupon($category){
+  $out = strtoupper($category) . rand(1,9999);
+  return $out;
+}
+
 
 function addUserLikes($likes, $db, $id){
   if ($likes === null) {
-    echo "Ops, devi accettare che l'app acceda ai tuoi likes";
+    $out = "Ops, devi accettare che l'app acceda ai tuoi likes";
+    return $out;
   } else {
-    print "<h2> Interessi: </h2>";
-
+    // print "<h2> Interessi: </h2>";
     $category=array();
     foreach ($likes as $value) {
       array_push($category, $value['category']);
