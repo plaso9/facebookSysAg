@@ -21,7 +21,7 @@ addUserLikes($user_likes_edge, $db_connection, $user_id);
 $top_like = $db_connection->getTopUserLikes();
 printLikes($top_like);
 
-require_once("fb-export.php");
+// require_once("fb-export.php");
 
 $db_connection->closeDbConnection();
 

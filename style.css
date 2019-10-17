@@ -24,7 +24,7 @@
     width: 25px;
     height: 25px;
     border-radius: 50%;
-    background: #4CAF50;
+    background: #7a2df2;
     cursor: pointer;
   }
   
@@ -32,6 +32,23 @@
     width: 25px;
     height: 25px;
     border-radius: 50%;
-    background: #4CAF50;
+    background: #7a2df2;
     cursor: pointer;
+  }
+  .discount-background {
+    background-color : #F2C02D;
+    color : #FFFFFF;
+  }
+  .discount-btn{
+    color : #FFFFFF;   
+    background-color :#7a2df2
+  }
+  .footer {
+    clear: both;
+    height: 150px;
+    position: fixed;
+    bottom: 0;
+    text-align: center;  
+    right: 0;
+    left: 0;
   }
