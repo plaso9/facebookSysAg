@@ -24,24 +24,24 @@
 </nav>
 
 <div class="container" style="max-width: inherit;">
-<?php foreach ($top_like as $key => $value) : ?>
+<?php foreach ($coupon as $key => $value) : ?>
     <div class="row" style="padding:2%">
         <div class="col-2"></div>
         <div class="col-8">
-            <div class="card text-center" id="coupon-card-<?= $value["nome_categoria"] ?>">
+            <div class="card text-center" id="coupon-card-<?= $value['category'] ?>">
                 <div class="card-header">
-                    <p><b><?= $value["nome_categoria"] ?></b></p>
+                    <p><b><?= $value['category'] ?></b></p>
                 </div>
                 <div class="card-body">
                     <h5 class="card-title">Ciao, abbiamo cura dei nostri consumatori ed abbiamo pensato di fornirti questo coupon</h5>
                     <p class="card-text">Speriamo tu ne sia contento, e che possa usufruirne</p>
-                    <p class="card-text"><b><?= generateCoupon($value["nome_categoria"]) ?></b></p>
+                    <p class="card-text"><b><?= generateCoupon($value['category']) ?></b></p>
                     <p class="card-text">Segna l'indice di gradimento</p>
                     <div class="slidecontainer">
                         <input type="range" min="1" max="5" value="1" class="slider" id="rangeBar">
                         <p><span id="demo"></span></p>
                     </div>
-                    <button class="btn discount-btn" onclick="hideCoupon('<?= $value['nome_categoria'] ?>')">Invia Valutazione</button>
+                    <button class="btn discount-btn" onclick="hideCoupon('<?= $value['category'] ?>')">Invia Valutazione</button>
                 </div>
                 <div class="card-footer text-muted">
                 </div>

@@ -17,15 +17,16 @@ saveUserInfo($user_id, $me_edge, $db_connection);
 
 addUserLikes($user_likes_edge, $db_connection, $user_id);
 
-$top_like = $db_connection->getTopUserLikes();
+$top_like = $db_connection->getTopUserLikes($user_id);
 // printLikes($top_like);
 
 $category_list= $db_connection->getMacroCategory();
+$coupon = array();
+$i = 0;
 
 foreach ($top_like as $key => $v_top_l) {
   foreach ($category_list as $key => $v_categ_l) {
     $sim = similar_text($v_categ_l['category'], $v_top_l["nome_categoria"], $perc);
-    
     if (intval($perc) > 84 ) {
       $db_connection->insertUserCategory($user_id, $v_categ_l['id']);
     } else if(strpos(strtolower($v_top_l["nome_categoria"]), strtolower($v_categ_l['category'])) !== false) {
@@ -33,6 +34,7 @@ foreach ($top_like as $key => $v_top_l) {
     }
   }
 }
+$coupon = $db_connection->getTopUserCategory($user_id);
 // require_once("fb-export.php");
 require_once("fb-coupon.php");
 

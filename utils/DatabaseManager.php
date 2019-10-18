@@ -25,8 +25,8 @@ class DatabaseManager{
     self::$_DB_CONNECTION->insert("INSERT INTO likes_description(nome_categoria, description, user_id) VALUES ('$name', '$description', '$id')");
   }
 
-  function getTopUserLikes(){
-    return self::$_DB_CONNECTION->select("SELECT nome_categoria, counter, user_id FROM likes ORDER BY counter DESC");
+  function getTopUserLikes($user_id){
+    return self::$_DB_CONNECTION->select("SELECT nome_categoria, counter, user_id FROM likes WHERE user_id = '$user_id' ORDER BY counter DESC");
   }
 
   function getMacroCategory(){
@@ -35,6 +35,15 @@ class DatabaseManager{
 
   function insertUserCategory($user_id, $category_id){
     self::$_DB_CONNECTION->insert("INSERT INTO user_category (_user, _category) VALUES ($user_id, $category_id)");
+  }
+
+  function getTopUserCategory($user_id){
+    return self::$_DB_CONNECTION->select("SELECT c.id,c.category, uc._category, COUNT(c.id) as tot 
+      FROM category c, user_category uc 
+      WHERE c.id = uc._category AND uc._user = '$user_id'
+      GROUP BY uc._category 
+      ORDER BY tot DESC 
+      LIMIT 2");
   }
 
   function updateUser($id, $birthday, $email, $hometown, $gender, $favorite_teams, $favorite_athletes, $music){
