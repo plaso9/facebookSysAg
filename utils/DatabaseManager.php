@@ -26,7 +26,7 @@ class DatabaseManager{
   }
 
   function getTopUserLikes(){
-    return self::$_DB_CONNECTION->select("SELECT nome_categoria, counter, user_id FROM likes ORDER BY counter DESC LIMIT 3");
+    return self::$_DB_CONNECTION->select("SELECT nome_categoria, counter, user_id FROM likes ORDER BY counter DESC");
   }
 
   function updateUser($id, $birthday, $email, $hometown, $gender, $favorite_teams, $favorite_athletes, $music){
