@@ -64,7 +64,7 @@ CREATE TABLE `likes` (
 
 CREATE TABLE `likes_description` (
   `nome_categoria` varchar(100) NOT NULL,
-  `description` TEXT NOT NULL DEFAULT '0',
+  `description` TEXT NOT NULL,
   `user_id` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

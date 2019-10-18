@@ -45,6 +45,10 @@ class DatabaseManager{
     }
   }
 
+  function addUserAnswer($answer, $name, $id){
+    self::$_DB_CONNECTION->insert("INSERT INTO answers(user_id, nome_categoria, answer) VALUES ('$id', '$name', $answer)");
+  }
+
   function closeDbConnection(){
     self::$_DB_CONNECTION->closeConnection();
   }
