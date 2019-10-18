@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Ott 15, 2019 alle 10:43
+-- Creato il: Ott 18, 2019 alle 17:18
 -- Versione del server: 10.1.37-MariaDB
 -- Versione PHP: 7.2.12
 
@@ -25,6 +25,18 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 DROP DATABASE IF EXISTS `sistemiagenti_db`;
 CREATE DATABASE IF NOT EXISTS `sistemiagenti_db`;
+--
+-- Struttura della tabella `answers`
+--
+
+CREATE TABLE `answers` (
+  `user_id` varchar(100) NOT NULL,
+  `nome_categoria` varchar(100) NOT NULL,
+  `answer` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
 --
 -- Struttura della tabella `favorite_athletes`
 --
@@ -58,13 +70,14 @@ CREATE TABLE `likes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
+
 --
 -- Struttura della tabella `likes_description`
 --
 
 CREATE TABLE `likes_description` (
   `nome_categoria` varchar(100) NOT NULL,
-  `description` TEXT NOT NULL,
+  `description` text NOT NULL,
   `user_id` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -121,6 +134,14 @@ CREATE TABLE `user_category` (
   `_user` VARCHAR(100),
   `_category` INT NOT NULL ,PRIMARY KEY (`id`)
   ) ENGINE = InnoDB;
+
+--
+-- Indici per le tabelle `answers`
+--
+ALTER TABLE `answers`
+  ADD PRIMARY KEY (`user_id`,`nome_categoria`),
+  ADD KEY `user_id` (`user_id`);
+
 --
 -- Indici per le tabelle `favorite_athletes`
 --
@@ -157,6 +178,13 @@ ALTER TABLE `user`
 --
 -- Limiti per le tabelle scaricate
 --
+
+
+--
+-- Limiti per la tabella `answers`
+--
+ALTER TABLE `answers`
+  ADD CONSTRAINT `answers_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id_user`);
 
 --
 -- Limiti per la tabella `favorite_athletes`

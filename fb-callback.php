@@ -55,6 +55,10 @@ function saveUserInfo($id, $info, $db){
   $db->updateUser($id, $birthday, $email, $hometown, $gender, $favorite_teams, $favorite_athletes, $music);
 }
 
+function saveUserAnswers($id, $answer, $name, $db){
+  $db->addUserAnswer($answer, $name, $id);
+}
+
 
 function printLikes($likes){
   foreach ($likes as $like) {
