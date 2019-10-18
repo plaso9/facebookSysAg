@@ -23,7 +23,8 @@ SET time_zone = "+00:00";
 --
 
 -- --------------------------------------------------------
-
+DROP DATABASE IF EXISTS `sistemiagenti_db`;
+CREATE DATABASE IF NOT EXISTS `sistemiagenti_db`;
 --
 -- Struttura della tabella `favorite_athletes`
 --
@@ -53,6 +54,17 @@ CREATE TABLE `football_team` (
 CREATE TABLE `likes` (
   `nome_categoria` varchar(100) NOT NULL,
   `counter` int(11) NOT NULL DEFAULT '0',
+  `user_id` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+--
+-- Struttura della tabella `likes_description`
+--
+
+CREATE TABLE `likes_description` (
+  `nome_categoria` varchar(100) NOT NULL,
+  `description` TEXT NOT NULL DEFAULT '0',
   `user_id` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

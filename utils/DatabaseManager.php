@@ -21,6 +21,10 @@ class DatabaseManager{
     self::$_DB_CONNECTION->insert("INSERT INTO likes(nome_categoria, counter, user_id) VALUES ('$name', $counter, '$id')");
   }
 
+  function insertUserLikesDescription($name, $description, $id){
+    self::$_DB_CONNECTION->insert("INSERT INTO likes_description(nome_categoria, description, user_id) VALUES ('$name', '$description', '$id')");
+  }
+
   function getTopUserLikes(){
     return self::$_DB_CONNECTION->select("SELECT nome_categoria, counter, user_id FROM likes ORDER BY counter DESC LIMIT 3");
   }

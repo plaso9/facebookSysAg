@@ -10,7 +10,6 @@ $user_likes_edge = $facebook->getUserLikes();
 $me_edge = $facebook->getUser();
 
 // print "Benvenuto " . $me->getName() . "\n";
-
 $user_id = $me->getId();
 $user_name = $me->getName();
 $db_connection->createUser($user_id, $user_name);
@@ -59,8 +58,8 @@ function addUserLikes($likes, $db, $id){
     $out = "Ops, devi accettare che l'app acceda ai tuoi likes";
     return $out;
   } else {
-    // print "<h2> Interessi: </h2>";
     $category=array();
+    $like_description = array();
     foreach ($likes as $value) {
       array_push($category, $value['category']);
     }
@@ -69,6 +68,10 @@ function addUserLikes($likes, $db, $id){
 
     foreach($vals as $key => $value){
       $db->insertUserLikes($key, $value, $id);
+    }
+    foreach($likes as $key => $value){
+      $description = (isset($value['about'])) ? $value['about'] : "";
+      $db->insertUserLikesDescription($value['category'], $description, $id);
     }
   }
 }
