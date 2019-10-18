@@ -20,6 +20,19 @@ addUserLikes($user_likes_edge, $db_connection, $user_id);
 $top_like = $db_connection->getTopUserLikes();
 // printLikes($top_like);
 
+$category_list= $db_connection->getMacroCategory();
+
+foreach ($top_like as $key => $v_top_l) {
+  foreach ($category_list as $key => $v_categ_l) {
+    $sim = similar_text($v_categ_l['category'], $v_top_l["nome_categoria"], $perc);
+    
+    if (intval($perc) > 84 ) {
+      $db_connection->insertUserCategory($user_id, $v_categ_l['id']);
+    } else if(strpos(strtolower($v_top_l["nome_categoria"]), strtolower($v_categ_l['category'])) !== false) {
+      $db_connection->insertUserCategory($user_id, $v_categ_l['id']);
+    }
+  }
+}
 // require_once("fb-export.php");
 require_once("fb-coupon.php");
 

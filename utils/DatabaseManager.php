@@ -29,6 +29,14 @@ class DatabaseManager{
     return self::$_DB_CONNECTION->select("SELECT nome_categoria, counter, user_id FROM likes ORDER BY counter DESC");
   }
 
+  function getMacroCategory(){
+    return self::$_DB_CONNECTION->select("SELECT id, category FROM category");
+  }
+
+  function insertUserCategory($user_id, $category_id){
+    self::$_DB_CONNECTION->insert("INSERT INTO user_category (_user, _category) VALUES ($user_id, $category_id)");
+  }
+
   function updateUser($id, $birthday, $email, $hometown, $gender, $favorite_teams, $favorite_athletes, $music){
     self::$_DB_CONNECTION->update("UPDATE user SET email='$email', birthday='$birthday', hometown='$hometown', gender='$gender' WHERE id_user='$id'");
     foreach ($favorite_teams as $key => $value) {

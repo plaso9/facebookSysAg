@@ -97,7 +97,30 @@ CREATE TABLE `user` (
 --
 -- Indici per le tabelle scaricate
 --
+CREATE TABLE `category` ( 
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `category` VARCHAR(250) NOT NULL , PRIMARY KEY (`id`)
+  ) ENGINE = InnoDB;
 
+INSERT INTO `category` (`id`, `category`) VALUES 
+(NULL, 'Abbigliamento'),
+(NULL, 'Sport'),
+(NULL, 'Cinema'),
+(NULL, 'Viaggi'),
+(NULL, 'Medicina'),
+(NULL, 'Libri'),
+(NULL, 'Cibo'),
+(NULL, 'Elettronica'),
+(NULL, 'Musica'),
+(NULL, 'Politica'),
+(NULL, 'Videogiochi'),
+(NULL, 'Tv');
+
+CREATE TABLE `user_category` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `_user` VARCHAR(100),
+  `_category` INT NOT NULL ,PRIMARY KEY (`id`)
+  ) ENGINE = InnoDB;
 --
 -- Indici per le tabelle `favorite_athletes`
 --
