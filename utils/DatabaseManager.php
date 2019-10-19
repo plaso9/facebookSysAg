@@ -37,6 +37,10 @@ class DatabaseManager{
     self::$_DB_CONNECTION->insert("INSERT INTO user_category (_user, _category) VALUES ($user_id, $category_id)");
   }
 
+  function insertUserValutation($valutation, $user_id){
+    self::$_DB_CONNECTION->insert("INSERT INTO valutation(_user, valutation) VALUES ('$user_id', '$valutation')");
+  }
+
   function getTopUserCategory($user_id){
     return self::$_DB_CONNECTION->select("SELECT c.id,c.category, uc._category, COUNT(c.id) as tot 
       FROM category c, user_category uc 
@@ -60,10 +64,6 @@ class DatabaseManager{
       $name = $value['name'];
       self::$_DB_CONNECTION->insert("INSERT INTO music(name, user_id) VALUES ('$name', '$id')");
     }
-  }
-
-  function addUserAnswer($answer, $name, $id){
-    self::$_DB_CONNECTION->insert("INSERT INTO answers(user_id, nome_categoria, answer) VALUES ('$id', '$name', $answer)");
   }
 
   function closeDbConnection(){

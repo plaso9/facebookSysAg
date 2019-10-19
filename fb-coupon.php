@@ -38,7 +38,7 @@
                     <p class="card-text"><b><?= generateCoupon($value['category']) ?></b></p>
                     <p class="card-text">Segna l'indice di gradimento</p>
                     <div class="slidecontainer">
-                        <input type="range" min="1" max="5" value="1" class="slider" id="rangeBar">
+                        <input type="range" id="coupon-valutation-<?= $value['category'] ?>" min="1" max="5" value="1" class="slider" id="rangeBar">
                         <p><span id="demo"></span></p>
                     </div>
                     <button class="btn discount-btn" onclick="hideCoupon('<?= $value['category'] ?>')">Invia Valutazione</button>
@@ -71,11 +71,32 @@ slider.oninput = function() {
 }
 
 function hideCoupon(category_name){
+    
     var el = "coupon-card-" + category_name;
+    var el_val = "coupon-valutation-" + category_name;
+    var valutation = document.getElementById(el_val).value;
     document.getElementById(el).style.display = "none";
+    insertValutationAjax(valutation);
+}
+
+function insertValutationAjax(valutation) {
+    var url = "http://localhost/facebooksysag/fb-valutation.php";
+    var user_id = "<?= $user_id ?>";
+    var data = {
+        "coupon-valutation-value" : valutation,
+        "user-id" : user_id
+    };
+    $.ajax({
+        url : url,
+        data : data,
+        method : "POST",
+        success : function(){
+            console.log("Ok");
+        }
+    });
 }
 
 </script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="/facebooksysag/lib/jquery/jquery-3.1.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

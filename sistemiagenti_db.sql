@@ -136,11 +136,14 @@ CREATE TABLE `user_category` (
   ) ENGINE = InnoDB;
 
 --
--- Indici per le tabelle `answers`
+-- Indici per le tabelle `valutation`
 --
-ALTER TABLE `answers`
-  ADD PRIMARY KEY (`user_id`,`nome_categoria`),
-  ADD KEY `user_id` (`user_id`);
+CREATE TABLE `valutation` ( 
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `_user` VARCHAR(250) NOT NULL ,
+  `valutation` VARCHAR(100) NOT NULL ,
+  PRIMARY KEY (`id`)
+  ) ENGINE = InnoDB;
 
 --
 -- Indici per le tabelle `favorite_athletes`
