@@ -126,7 +126,7 @@ INSERT INTO `category` (`id`, `category`, `coupon_message`) VALUES
 (NULL, 'Libri', 'Valido in tutte le librerie nella città di Bari'),
 (NULL, 'Cibo', 'Valido in tutti i ristoranti nella città di Bari'),
 (NULL, 'Infomatica & Elettronica & Tv', 'Valido in tutti i negozi hi-tech nella città di Bari'),
-(NULL, 'Musica', 'Valido in tutte le case musicali nella città di Bari'),
+(NULL, 'Musica', 'Valido in tutti gli eventi musicali nella città di Bari'),
 (NULL, 'Videogiochi','Valido in tutti i gaming store nella città di Bari' );
 
 CREATE TABLE `user_category` (
