@@ -112,22 +112,22 @@ CREATE TABLE `user` (
 --
 CREATE TABLE `category` ( 
   `id` INT NOT NULL AUTO_INCREMENT ,
-  `category` VARCHAR(250) NOT NULL , PRIMARY KEY (`id`)
+  `category` VARCHAR(250) NOT NULL ,
+  `coupon_message` VARCHAR(250) NOT NULL ,
+   PRIMARY KEY (`id`)
   ) ENGINE = InnoDB;
 
-INSERT INTO `category` (`id`, `category`) VALUES 
-(NULL, 'Abbigliamento'),
-(NULL, 'Sport'),
-(NULL, 'Cinema'),
-(NULL, 'Viaggi'),
-(NULL, 'Medicina & Salute'),
-(NULL, 'Libri'),
-(NULL, 'Cibo'),
-(NULL, 'Infomatica & Elettronica'),
-(NULL, 'Musica'),
-(NULL, 'Politica'),
-(NULL, 'Videogiochi'),
-(NULL, 'Tv');
+INSERT INTO `category` (`id`, `category`, `coupon_message`) VALUES 
+(NULL, 'Abbigliamento', 'Valido in tutti i negozi di abbigliamento nella città di Bari'),
+(NULL, 'Sport', 'Valido per tutti gli eventi sportivi in Italia'),
+(NULL, 'Cinema', 'Valido in tutti i cinema nella città di Bari'),
+(NULL, 'Viaggi', 'Valido in tutte le agenzie di viaggio nella città di Bari'),
+(NULL, 'Medicina & Salute', 'Valido in tutte le farmacie nella città di Bari'),
+(NULL, 'Libri', 'Valido in tutte le librerie nella città di Bari'),
+(NULL, 'Cibo', 'Valido in tutti i ristoranti nella città di Bari'),
+(NULL, 'Infomatica & Elettronica & Tv', 'Valido in tutti i negozi hi-tech nella città di Bari'),
+(NULL, 'Musica', 'Valido in tutte le case musicali nella città di Bari'),
+(NULL, 'Videogiochi','Valido in tutti i gaming store nella città di Bari' );
 
 CREATE TABLE `user_category` (
   `id` INT NOT NULL AUTO_INCREMENT ,

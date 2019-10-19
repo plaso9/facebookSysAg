@@ -30,7 +30,7 @@
         <div class="col-8">
             <div class="card text-center" id="coupon-card-<?= $value['category'] ?>">
                 <div class="card-header">
-                    <p><b><?= $value['category'] ?></b></p>
+                    <p><b><?= utf8_encode($value['coupon_message']) ?></b></p>
                 </div>
                 <div class="card-body">
                     <h5 class="card-title">Ciao, abbiamo cura dei nostri consumatori ed abbiamo pensato di fornirti questo coupon</h5>

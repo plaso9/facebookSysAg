@@ -30,7 +30,7 @@ class DatabaseManager{
   }
 
   function getMacroCategory(){
-    return self::$_DB_CONNECTION->select("SELECT id, category FROM category");
+    return self::$_DB_CONNECTION->select("SELECT id, category, coupon_message  FROM category");
   }
 
   function insertUserCategory($user_id, $category_id){
@@ -42,7 +42,7 @@ class DatabaseManager{
   }
 
   function getTopUserCategory($user_id){
-    return self::$_DB_CONNECTION->select("SELECT c.id,c.category, uc._category, COUNT(c.id) as tot 
+    return self::$_DB_CONNECTION->select("SELECT c.id,c.category, uc._category, c.coupon_message, COUNT(c.id) as tot 
       FROM category c, user_category uc 
       WHERE c.id = uc._category AND uc._user = '$user_id'
       GROUP BY uc._category 
