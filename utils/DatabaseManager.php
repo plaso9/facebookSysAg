@@ -42,11 +42,11 @@ class DatabaseManager{
   }
 
   function getTopUserCategory($user_id){
-    return self::$_DB_CONNECTION->select("SELECT c.id,c.category, uc._category, c.coupon_message, COUNT(c.id) as tot 
-      FROM category c, user_category uc 
+    return self::$_DB_CONNECTION->select("SELECT c.id,c.category, uc._category, c.coupon_message, COUNT(c.id) as tot
+      FROM category c, user_category uc
       WHERE c.id = uc._category AND uc._user = '$user_id'
-      GROUP BY uc._category 
-      ORDER BY tot DESC 
+      GROUP BY uc._category
+      ORDER BY tot DESC
       LIMIT 2");
   }
 
@@ -64,6 +64,14 @@ class DatabaseManager{
       $name = $value['name'];
       self::$_DB_CONNECTION->insert("INSERT INTO music(name, user_id) VALUES ('$name', '$id')");
     }
+  }
+
+  function countAnswer(){
+    return self::$_DB_CONNECTION->select("SELECT valutation, count(id) FROM valutation GROUP BY valutation ORDER BY valutation");
+  }
+
+  function getAnswers(){
+    return self::$_DB_CONNECTION->select("SELECT _user, valutation FROM valutation");
   }
 
   function closeDbConnection(){

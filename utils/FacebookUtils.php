@@ -71,7 +71,7 @@ class FacebookManager{
   //Ritorna GraphEdge object con i like alle pagine dell'utente
   function getUserLikes(){
     try {
-      $response = self::$_FACEBOOK->get('/me/likes?fields=category,description,about&limit=100', self::getAccessToken());
+      $response = self::$_FACEBOOK->get('/me/likes?fields=category,description,about&limit=200', self::getAccessToken());
     } catch(FacebookExceptionsFacebookResponseException $e) {
       echo 'Graph returned an error: ' . $e->getMessage();
       exit;
