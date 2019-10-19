@@ -25,15 +25,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 DROP DATABASE IF EXISTS `sistemiagenti_db`;
 CREATE DATABASE IF NOT EXISTS `sistemiagenti_db`;
---
--- Struttura della tabella `answers`
---
-
-CREATE TABLE `answers` (
-  `user_id` varchar(100) NOT NULL,
-  `nome_categoria` varchar(100) NOT NULL,
-  `answer` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
