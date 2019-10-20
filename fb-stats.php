@@ -58,6 +58,102 @@ $users_answer = getUserAnswers($db_connection);
               }
           });
         </script>
+
+
+        <!-- GRAFICO 2 -->
+        <canvas id="mixed-chart" width="800" height="450"></canvas>
+        <script>
+        var ctx = document.getElementById("mixed-chart");
+        var answers = <?php echo json_encode($users_answer); ?>;
+
+        var data = {
+    			labels: generateLabel(answers),
+    			datasets: [{
+    				data: generateData(answers),
+            backgroundColor : generateBackgroundColor(answers)
+    			}]
+    		};
+
+        var mixedChart = new Chart(ctx, {
+              type: 'bar',
+              data: data,
+              options: {
+                title: {
+                  display: true,
+                  text: 'Media risposte gradimento per Utente'
+                },
+                legend: { display: false },
+                responsive: true,
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+              }
+          });
+
+          function generateBackgroundColor(answers) {
+            var data = [];
+            for (i = 0; i < (answers.length)/2; i++) {
+              data.push(getRandomColor());
+      			}
+			      return data;
+      		}
+
+          function getRandomColor() {
+              var letters = '0123456789ABCDEF'.split('');
+              var color = '#';
+              for (var i = 0; i < 6; i++ ) {
+                  color += letters[Math.floor(Math.random() * 16)];
+              }
+              return color;
+          }
+
+          function generateData(answers) {
+            var i;
+            var data = [];
+            var user, user_temp = "";
+            var ans = 0.00;
+            var media = 0.00;
+
+            for (i = 0; i < answers.length; i++) {
+              for (const [key, value] of Object.entries(answers[i])) {
+                user = String(key);
+                ans = parseFloat(value);
+              }
+              if(user != user_temp){
+                media += ans;
+              }else{
+                media +=ans;
+                media = media/2;
+                data.push(media);
+                var media = 0.00;
+              }
+              user_temp = user;
+      			}
+			      return data;
+      		}
+
+          function generateLabel(answers) {
+            var i;
+            var data = [];
+            var user, user_temp = "";
+
+            for (i = 0; i < answers.length; i++) {
+              for (const [key, value] of Object.entries(answers[i])) {
+                user = String(key);
+                ans = parseFloat(value);
+              }
+              if(user != user_temp){
+                data.push(user);
+              }
+              user_temp = user;
+      			}
+			      return data;
+      		}
+        </script>
         </div>
         <div class="col-2"></div>
     </div>

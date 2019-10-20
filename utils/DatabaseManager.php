@@ -71,7 +71,7 @@ class DatabaseManager{
   }
 
   function getAnswers(){
-    return self::$_DB_CONNECTION->select("SELECT _user, valutation FROM valutation");
+    return self::$_DB_CONNECTION->select("SELECT _user, valutation FROM valutation ORDER BY _user");
   }
 
   function closeDbConnection(){
