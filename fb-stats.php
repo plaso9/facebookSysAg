@@ -37,19 +37,21 @@ $users_answer = getUserAnswers($db_connection);
         <!-- GRAFICO 1 -->
         <canvas id="doughnut-chart" width="800" height="450"></canvas>
         <script>
+        var ctx = document.getElementById("doughnut-chart");
         var valutations = <?php echo json_encode($valutations); ?>;
-        new Chart(document.getElementById("doughnut-chart"), {
+
+        var data = {
+          labels: generateDoughnutLabel(valutations),
+          datasets: [{
+            label: "Valutazione Gradimento",
+            data: generateDoughnutData(valutations),
+            backgroundColor : generateBackgroundColor(valutations)
+          }]
+        };
+
+        var doughnutChart = new Chart(ctx, {
               type: 'doughnut',
-              data: {
-                labels: ["Gradimento 1", "Gradimento 2", "Gradimento 3", "Gradimento 4", "Gradimento 5"],
-                datasets: [
-                  {
-                    label: "Valutazione Gradimento",
-                    backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
-                    data: valutations
-                  }
-                ]
-              },
+              data: data,
               options: {
                 title: {
                   display: true,
@@ -57,8 +59,53 @@ $users_answer = getUserAnswers($db_connection);
                 }
               }
           });
+
+          function generateBackgroundColor(valutations) {
+            var data = [];
+            for (i = 0; i < (valutations.length); i++) {
+              data.push(getRandomColor());
+      			}
+			      return data;
+      		}
+
+          function getRandomColor() {
+              var letters = '0123456789ABCDEF'.split('');
+              var color = '#';
+              for (var i = 0; i < 6; i++ ) {
+                  color += letters[Math.floor(Math.random() * 16)];
+              }
+              return color;
+          }
+
+          function generateDoughnutData(valutations) {
+            var i;
+            var data = [];
+            var counter = 0;
+
+            for (i = 0; i < valutations.length; i++) {
+              for (const [key, value] of Object.entries(valutations[i])) {
+                counter = parseFloat(value);
+                data.push(counter);
+              }
+      			}
+			      return data;
+      		}
+
+          function generateDoughnutLabel(valutations){
+            var i;
+            var data = [];
+            var val = "";
+            for (i = 0; i < valutations.length; i++) {
+              for (const [key, value] of Object.entries(valutations[i])) {
+                val = String(key);
+                data.push("Gradimento " + val);
+              }
+      			}
+			      return data;
+      		}
         </script>
 
+        <br><br><br><br><br><br>
 
         <!-- GRAFICO 2 -->
         <canvas id="mixed-chart" width="800" height="450"></canvas>
@@ -176,7 +223,8 @@ function getAnswerByValutation($db){
   $valutations = $db->countAnswer();
   $result = [];
   foreach ($valutations as $valutation => $value) {
-    array_push($result, $value['count(id)']);
+    $val = array($value['valutation'] => $value['count(id)']);
+    array_push($result, $val);
   }
   return $result;
 }
