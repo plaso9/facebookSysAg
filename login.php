@@ -18,45 +18,53 @@ $permissions = ['email']; // Optional permissions
 $loginUrl = $helper->getLoginUrl('http://localhost/facebooksysag/fb-callback.php', $permissions);
 ?>
 
-
-<nav class="navbar navbar-expand-lg navbar-light discount-background">
-    <a class="navbar-brand" href="login.php">
-        <img src="http://localhost/facebooksysag/upload/discounts.jpg" width="90" height="30" alt="">
-    </a>
-    <div class="collapse navbar-collapse" id="navbarText">
-        <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-            <a class="nav-link" href="login.php">Home</a>
-        </li>
-        <li class="nav-item active">
-            <a class="nav-link" href="fb-stats.php">Vedi Statistiche</a>
-        </li>
-        </ul>
-        <span class="navbar-text"></span>
-    </div>
-</nav>
-
-<!-- CONTAINER -->
-<div class="container" style="max-width: inherit;">
-    <div class="row" style="padding:2%">
-      <div class="col-2"></div>
-      <div class="col-8">
-        <?php echo '<a href="' . $loginUrl . '">Accedi con Facebook!</a>';?>
-      </div>
-      <div class="col-2"></div>
-    </div>
-</div>
-
-
-<!-- FOOTER -->
-<footer class="footer discount-background">
-    <div class="container" style="max-width: inherit;">
-        <div class="row" style="padding:2%; color:white;">
-            <div class="col-12">
-                <p>Copyright 2019 - DGM Group</p>
+<div class="container">
+    <div class="columns">
+		<div class="column col-12 hide-sm" style="height: 160px;">
+		</div>
+	</div>
+    <form class="discount-background">
+        <div class="row" style="padding:1%">
+            <div class="col-5">
+                <img class="img-adapter" src="http://localhost/facebooksysag/upload/discounts.jpg" alt="Discount">
             </div>
+            <div class="col-7">
+                <div class="row" style="padding:1%">
+                    <div class="col-2"></div>
+                    <div class="col-8">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Email address</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                        </div>
+                    </div>
+                    <div class="col-2"></div>
+                </div>
+                <div class="row" style="padding:1%">
+                    <div class="col-2"></div>
+                    <div class="col-8">
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Password</label>
+                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                        </div>
+                    </div>
+                    <div class="col-2"></div>
+                </div>
+                <div class="row" style="padding:1%">
+                    <div class="col-3"></div>
+                    <div class="col-6" style="text-align:center">
+                        <button type="submit" class="btn discount-btn" style="display:inline-block; width:inherit">Accedi</button>
+                    </div>
+                    <div class="col-3"></div>
+                </div>
+                <div class="row" style="padding:1%">
+                    <div class="col-3"></div>
+                    <div class="col-6" style="text-align:center">
+                        <a href="<?= $loginUrl ?>" class="btn btn-primary" style="display:inline-block; width:inherit">Accedi con Facebook</a>
+                    </div>
+                    <div class="col-3"></div>
+                </div>
+            </div>        
         </div>
-    </div>
-<footer>
-
+    </form>
+</div>
 <?php
