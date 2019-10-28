@@ -23,7 +23,10 @@ SET time_zone = "+00:00";
 --
 
 -- --------------------------------------------------------
+DROP DATABASE IF EXISTS `sistemiagenti_db`;
+CREATE DATABASE IF NOT EXISTS `sistemiagenti_db`;
 
+-- --------------------------------------------------------
 --
 -- Struttura della tabella `category`
 --
