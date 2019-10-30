@@ -1,3 +1,5 @@
+<?php ini_set('display_errors', 0); ?>
+
 <?php
 include ('utils/DatabaseManager.php');
 include ('utils/FacebookUtils.php');
@@ -96,7 +98,11 @@ function addUserLikes($likes, $db, $id){
       }
       foreach($page as $key => $value){
         $description = (isset($value['about'])) ? $value['about'] : "";
-        $db->insertUserLikesDescription($value['category'], $description, $id);
+        $date = date_format($value['created_time'], 'Y-m-d');
+        if(!isset($date)){
+          $date = "";
+        }
+        $db->insertUserLikesDescription($value['category'], $description, $date, $id);
       }
     }
   }
