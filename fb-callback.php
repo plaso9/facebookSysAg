@@ -7,18 +7,23 @@ $facebook = new FacebookManager();
 
 $me = $facebook->getUserInfo();
 $user_likes_edge = $facebook->getUserLikes();
+$user_likes = array();
+
+while(isset($user_likes_edge)) {
+  array_push($user_likes, $user_likes_edge);
+  $user_likes_edge = $facebook->getFacebookInstance()->next($user_likes_edge);
+}
+
 $me_edge = $facebook->getUser();
 
-// print "Benvenuto " . $me->getName() . "\n";
 $user_id = $me->getId();
 $user_name = $me->getName();
 $db_connection->createUser($user_id, $user_name);
 saveUserInfo($user_id, $me_edge, $db_connection);
 
-addUserLikes($user_likes_edge, $db_connection, $user_id);
+addUserLikes($user_likes, $db_connection, $user_id);
 
 $top_like = $db_connection->getTopUserLikes($user_id);
-// printLikes($top_like);
 
 $category_list= $db_connection->getMacroCategory();
 $coupon = array();
@@ -79,18 +84,20 @@ function addUserLikes($likes, $db, $id){
   } else {
     $category=array();
     $like_description = array();
-    foreach ($likes as $value) {
-      array_push($category, $value['category']);
-    }
+    foreach ($likes as $page) {
+      foreach ($page as $value) {
+        array_push($category, $value['category']);
+      }
 
-    $vals = array_count_values($category);
+      $vals = array_count_values($category);
 
-    foreach($vals as $key => $value){
-      $db->insertUserLikes($key, $value, $id);
-    }
-    foreach($likes as $key => $value){
-      $description = (isset($value['about'])) ? $value['about'] : "";
-      $db->insertUserLikesDescription($value['category'], $description, $id);
+      foreach($vals as $key => $value){
+        $db->insertUserLikes($key, $value, $id);
+      }
+      foreach($page as $key => $value){
+        $description = (isset($value['about'])) ? $value['about'] : "";
+        $db->insertUserLikesDescription($value['category'], $description, $id);
+      }
     }
   }
 }
