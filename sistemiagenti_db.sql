@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Ott 21, 2019 alle 12:13
--- Versione del server: 10.1.37-MariaDB
--- Versione PHP: 7.2.12
+-- Creato il: Ott 30, 2019 alle 17:40
+-- Versione del server: 10.3.16-MariaDB
+-- Versione PHP: 7.3.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -56,6 +56,68 @@ INSERT INTO `category` (`id`, `category`, `coupon_message`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Struttura della tabella `dictionary`
+--
+
+CREATE TABLE `dictionary` (
+  `id` int(11) NOT NULL,
+  `_category` int(11) NOT NULL,
+  `word` varchar(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO `dictionary` (`id`, `_category`, `word`) VALUES
+(1, 2, 'Atleta'),
+(2, 2, 'Squadra'),
+(3, 3, 'Artista'),
+(4, 3, 'Attore'),
+(5, 2, 'Calcio'),
+(6, 2, 'Basket'),
+(7, 3, 'Film'),
+(8, 2, 'Handball'),
+(9, 2, 'Pallacanestro'),
+(10, 2, 'Pallamano'),
+(11, 2, 'Nuoto'),
+(12, 7, 'Bar'),
+(13, 7, 'Cornetto'),
+(14, 7, 'Panino'),
+(15, 2, 'Stadio'),
+(16, 2, 'Futsal'),
+(17, 9, 'Musicista'),
+(18, 9, 'Cantante'),
+(19, 9, 'Concerto'),
+(20, 9, 'Canzone'),
+(21, 5, 'Farmaci'),
+(22, 5, 'Pillole'),
+(23, 5, 'Fisioterapista'),
+(24, 2, 'NBA'),
+(25, 1, 'Brand'),
+(26, 1, 'Pantaloncino'),
+(27, 1, 'T-shirt'),
+(28, 2, 'Juventus'),
+(29, 2, 'Inter'),
+(30, 7, 'Chef'),
+(31, 7, 'Ristorante'),
+(32, 2, 'Champions League'),
+(33, 9, 'Spotify'),
+(34, 8, 'code'),
+(35, 8, 'Developer'),
+(36, 8, 'Software'),
+(37, 8, 'Hardware'),
+(38, 10, 'EA'),
+(39, 4, 'Esplorare'),
+(40, 4, 'Viaggiare'),
+(41, 4, 'Spiaggia'),
+(42, 4, 'Mare'),
+(43, 4, 'Montagna'),
+(44, 4, 'Lago'),
+(45, 4, 'California'),
+(46, 9, 'MTV'),
+(47, 8, 'Telecomunicazioni'),
+(48, 6, 'Biblioteca');
+
+-- --------------------------------------------------------
+
+--
 -- Struttura della tabella `favorite_athletes`
 --
 
@@ -75,7 +137,6 @@ CREATE TABLE `football_team` (
   `user_id` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
 -- --------------------------------------------------------
 
 --
@@ -84,7 +145,7 @@ CREATE TABLE `football_team` (
 
 CREATE TABLE `likes` (
   `nome_categoria` varchar(100) NOT NULL,
-  `counter` int(11) NOT NULL DEFAULT '0',
+  `counter` int(11) NOT NULL DEFAULT 0,
   `user_id` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -110,6 +171,7 @@ CREATE TABLE `music` (
   `name` varchar(100) NOT NULL,
   `user_id` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 -- --------------------------------------------------------
 
 --
@@ -124,7 +186,6 @@ CREATE TABLE `user` (
   `hometown` varchar(100) DEFAULT NULL,
   `gender` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 
 -- --------------------------------------------------------
 
@@ -221,6 +282,12 @@ ALTER TABLE `category`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indici per le tabelle `dictionary`
+--
+ALTER TABLE `dictionary`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indici per le tabelle `favorite_athletes`
 --
 ALTER TABLE `favorite_athletes`
@@ -274,6 +341,12 @@ ALTER TABLE `valutation`
 --
 ALTER TABLE `category`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT per la tabella `dictionary`
+--
+ALTER TABLE `dictionary`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT per la tabella `user_category`

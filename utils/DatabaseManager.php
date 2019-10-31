@@ -25,6 +25,26 @@ class DatabaseManager{
     self::$_DB_CONNECTION->insert("INSERT INTO likes_description(nome_categoria, description, user_id) VALUES ('$name', '$description', '$id')");
   }
 
+  function addWord($word, $category_id){
+    self::$_DB_CONNECTION->insert("INSERT INTO dictionary(_category, word) VALUES ($category_id, '$word')");
+  }
+  
+  function wordAlreadyExist($word){
+    return self::$_DB_CONNECTION->select("SELECT word FROM dictionary WHERE word = '$word'");
+  }
+
+  function getCategoryFromWord($word){
+    return self::$_DB_CONNECTION->select("SELECT c.category FROM category as c, dictionary d WHERE d.word = '$word' AND c.id = d._category");
+  }
+
+  function getAllUserLikes($user_id){
+    return self::$_DB_CONNECTION->select("SELECT nome_categoria, description FROM likes_description WHERE user_id = '$user_id'");
+  }
+
+  function getCategoryOfWordInDictionary($word){
+    return self::$_DB_CONNECTION->select("SELECT _category FROM dictionary WHERE word = '$word'");
+  }
+
   function getTopUserLikes($user_id){
     return self::$_DB_CONNECTION->select("SELECT nome_categoria, counter, user_id FROM likes WHERE user_id = '$user_id' ORDER BY counter DESC");
   }
