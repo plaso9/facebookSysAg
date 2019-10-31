@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Ott 30, 2019 alle 17:40
+-- Creato il: Ott 31, 2019 alle 23:33
 -- Versione del server: 10.3.16-MariaDB
 -- Versione PHP: 7.3.7
 
@@ -65,6 +65,10 @@ CREATE TABLE `dictionary` (
   `word` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dump dei dati per la tabella `dictionary`
+--
+
 INSERT INTO `dictionary` (`id`, `_category`, `word`) VALUES
 (1, 2, 'Atleta'),
 (2, 2, 'Squadra'),
@@ -113,7 +117,63 @@ INSERT INTO `dictionary` (`id`, `_category`, `word`) VALUES
 (45, 4, 'California'),
 (46, 9, 'MTV'),
 (47, 8, 'Telecomunicazioni'),
-(48, 6, 'Biblioteca');
+(48, 6, 'Biblioteca'),
+(49, 1, 'Shopping'),
+(50, 2, 'Ballerino'),
+(51, 2, 'Ballerina'),
+(52, 2, 'Danza'),
+(53, 7, 'Bevande'),
+(54, 4, 'Tour operator'),
+(55, 5, 'Bellezza'),
+(56, 7, 'Pescatori'),
+(57, 7, 'Cucina'),
+(58, 7, 'Fast Food'),
+(59, 7, 'Risto-pub'),
+(60, 7, 'Hamburger'),
+(61, 7, 'Pizzeria'),
+(62, 2, 'Palestra'),
+(63, 7, 'Paninoteca'),
+(64, 7, 'Pub'),
+(65, 1, 'Negozio'),
+(66, 1, 'Vintage'),
+(67, 5, 'Nutrizionista'),
+(68, 5, 'Dietista'),
+(69, 2, 'Fitness'),
+(70, 2, 'Automobili'),
+(71, 2, 'Concessionaria'),
+(72, 7, 'Birra'),
+(73, 2, 'Volley'),
+(74, 2, 'Hip Hop'),
+(75, 3, 'Spettacolo'),
+(76, 5, 'Dottore'),
+(77, 5, 'Medico'),
+(78, 2, 'Allenatore'),
+(79, 3, 'Comico'),
+(80, 10, 'Videogioco'),
+(81, 6, 'Libro'),
+(82, 10, 'Giochi'),
+(83, 8, 'App'),
+(84, 8, 'Provider'),
+(85, 8, 'Internet'),
+(86, 4, 'CittÃ '),
+(87, 4, 'New York'),
+(88, 2, 'Fantacalcio'),
+(89, 8, 'Computer (brand)'),
+(90, 8, 'Elettronica'),
+(91, 5, 'Vitamine/integratori'),
+(92, 7, 'Vini/liquori'),
+(93, 8, 'Telefono/tablet'),
+(94, 7, 'Cucina/cucinare'),
+(95, 5, 'Malattie'),
+(96, 7, 'Agricoltura'),
+(97, 7, 'Gastronomia'),
+(98, 6, 'Istruzione'),
+(99, 8, 'Scienza'),
+(100, 6, 'Riviste'),
+(101, 9, 'Orchestra'),
+(102, 8, 'Scienziato'),
+(103, 10, 'Gamer'),
+(104, 6, 'Autore');
 
 -- --------------------------------------------------------
 
@@ -158,7 +218,7 @@ CREATE TABLE `likes` (
 CREATE TABLE `likes_description` (
   `nome_categoria` varchar(100) NOT NULL,
   `description` text NOT NULL,
-  `like_date` DATETIME NOT NULL,
+  `like_date` datetime NOT NULL,
   `user_id` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -199,7 +259,6 @@ CREATE TABLE `user_category` (
   `_user` varchar(100) DEFAULT NULL,
   `_category` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
 
 -- --------------------------------------------------------
 
@@ -288,13 +347,13 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT per la tabella `dictionary`
 --
 ALTER TABLE `dictionary`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
 
 --
 -- AUTO_INCREMENT per la tabella `user_category`
 --
 ALTER TABLE `user_category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT per la tabella `valutation`

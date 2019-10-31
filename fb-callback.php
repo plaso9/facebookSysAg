@@ -55,7 +55,6 @@ $coupon = array();
 $i = 0;
 
 foreach ($all_like as $key => $v_all_like) {
-      // var_dump($v_all_like);
   $categoryArr = $db_connection->getCategoryOfWordInDictionary($v_all_like["nome_categoria"]);
   foreach ($category_list as $key => $v_category) {
     $sim = similar_text($v_category['category'], $v_all_like["nome_categoria"], $perc);
@@ -63,18 +62,8 @@ foreach ($all_like as $key => $v_all_like) {
       $db_connection->insertUserCategory($user_id, $v_category['id']);
     } else if (strpos(strtolower($v_all_like["nome_categoria"]), strtolower($v_category['category'])) !== false) {
       $db_connection->insertUserCategory($user_id, $v_category['id']);
-    } else if (!empty($categoryArr) && $categoryArr[0]["_category"] == $v_category["id"]) {
-      // var_dump($v_all_like);
+    } else if (!empty($categoryArr) && strtolower($categoryArr[0]["_category"]) == strtolower($v_category["id"])) {
       $db_connection->insertUserCategory($user_id, $v_category['id']);
-      // var_dump($v_all_like["nome_categoria"]);
-      // $categoryArr = $db_connection->getCategoryOfWordInDictionary($v_all_like["nome_categoria"]);
-      // if (!empty($categoryArr)) {
-      //   var_dump("OK : ");
-      //   var_dump($v_all_like, $categoryArr);
-      // } else {
-      //   var_dump("NO GOOD : ");
-      //   var_dump($v_all_like, $categoryArr);
-      // }
     }
   }
 }
