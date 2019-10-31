@@ -173,7 +173,15 @@ INSERT INTO `dictionary` (`id`, `_category`, `word`) VALUES
 (101, 9, 'Orchestra'),
 (102, 8, 'Scienziato'),
 (103, 10, 'Gamer'),
-(104, 6, 'Autore');
+(104, 6, 'Autore'),
+(105, 7, 'Lounge'),
+(106, 6, 'Editore'),
+(107, 8, 'Fotografia'),
+(108, 8, 'Cellulari'),
+(109, 10, 'Giocattoli'),
+(110, 5, 'Optometrista'),
+(111, 6, 'Scuola');
+
 
 -- --------------------------------------------------------
 
