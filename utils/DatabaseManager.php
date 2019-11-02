@@ -57,13 +57,26 @@ class DatabaseManager{
     return self::$_DB_CONNECTION->select("SELECT id, category, coupon_message  FROM category");
   }
 
-  function getFavoriteCategory(){
+  function getFavoriteCategory($user_id){
     return self::$_DB_CONNECTION->select("SELECT COUNT(uc.id), SUM(uc.point) as total_point, c.category, c.coupon_message
     FROM user_category uc, category c
-    WHERE c.id = uc._category
+    WHERE c.id = uc._category AND _user = $user_id
     GROUP BY _category 
     ORDER BY total_point DESC
     LIMIT 2");
+  }
+
+  function getLastFavoriteCategory($user_id){
+    return self::$_DB_CONNECTION->select("SELECT COUNT(uc.id), SUM(uc.point) as total_point, c.category, c.coupon_message
+    FROM user_category uc, category c
+    WHERE c.id = uc._category AND _user = $user_id
+    GROUP BY _category 
+    ORDER BY total_point
+    LIMIT 8");
+  }
+
+  function countPagesAnalyzed($user_id){
+    return self::$_DB_CONNECTION->select("SELECT COUNT(id) as tot FROM user_category WHERE _user = $user_id");
   }
 
   function insertUserCategory($user_id, $category_id, $point){

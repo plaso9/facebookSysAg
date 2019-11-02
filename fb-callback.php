@@ -100,6 +100,11 @@ foreach ($arrayDiff as $key => $value) {
 // fwrite($handle, $testo);
 // $coupon = $db_connection->getTopUserCategory($user_id);
 $coupon = $db_connection->getFavoriteCategory($user_id);
+$lastcategory = $db_connection->getLastFavoriteCategory($user_id);
+$page_analyzed_arr = $db_connection->countPagesAnalyzed($user_id);
+foreach ($page_analyzed_arr as $key => $value) {
+  $page_analyzed = $value["tot"];
+}
 //____________________________________________________________________________________________________________________
 // require_once("fb-export.php");
 require_once("fb-coupon.php");
