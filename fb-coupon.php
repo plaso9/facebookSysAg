@@ -30,12 +30,12 @@
         <div class="col-8">
             <div class="card text-center" id="coupon-card-<?= $value['category'] ?>">
                 <div class="card-header">
-                    <p><b><?= utf8_encode($value['coupon_message']) ?></b></p>
+                    <p><b>Ciao, abbiamo cura dei nostri consumatori ed abbiamo pensato di fornirti questo coupon</b></p>
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title">Ciao, abbiamo cura dei nostri consumatori ed abbiamo pensato di fornirti questo coupon</h5>
+                    <h4 class="card-title"><?= utf8_encode($value['coupon_message']) ?></h4>
                     <p class="card-text">Speriamo tu ne sia contento, e che possa usufruirne</p>
-                    <p class="card-text"><b><?= generateCoupon($value['category']) ?></b></p>
+                    <p class="card-text"><b style="font-size:1.5em;"><?= generateCoupon($value['category']) ?></b></p>
                     <p class="card-text">Segna l'indice di gradimento</p>
                     <div class="slidecontainer">
                         <input type="range" id="coupon-valutation-<?= $value['category'] ?>" min="1" max="5" value="1" class="slider" id="rangeBar">

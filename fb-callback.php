@@ -53,21 +53,53 @@ $category_list= $db_connection->getMacroCategory();
 
 $coupon = array();
 $i = 0;
+$testo = "";
 
+$like = array();
+$like_checked = array();
 foreach ($all_like as $key => $v_all_like) {
+  array_push($like,$v_all_like["description"]);
   $categoryArr = $db_connection->getCategoryOfWordInDictionary($v_all_like["nome_categoria"]);
   foreach ($category_list as $key => $v_category) {
     $sim = similar_text($v_category['category'], $v_all_like["nome_categoria"], $perc);
     if (intval($perc) > 84 ) {
-      $db_connection->insertUserCategory($user_id, $v_category['id']);
+      array_push($like_checked,$v_all_like["description"]);
+      $point = "1";
+      // $testo .= $v_category["category"] . " similar 84% " . $v_all_like["nome_categoria"] . " => " . $v_all_like["description"] . "\n";
+      $db_connection->insertUserCategory($user_id, $v_category['id'], $point);
     } else if (strpos(strtolower($v_all_like["nome_categoria"]), strtolower($v_category['category'])) !== false) {
-      $db_connection->insertUserCategory($user_id, $v_category['id']);
+      array_push($like_checked,$v_all_like["description"]);
+      $point = "0.9";
+      // $testo .= $v_category["category"] . " strpos " . $v_all_like["nome_categoria"] . " => " . $v_all_like["description"] . "\n";
+      $db_connection->insertUserCategory($user_id, $v_category['id'], $point);
     } else if (!empty($categoryArr) && strtolower($categoryArr[0]["_category"]) == strtolower($v_category["id"])) {
-      $db_connection->insertUserCategory($user_id, $v_category['id']);
+      array_push($like_checked,$v_all_like["description"]);
+      $point = "0.9";
+      // $testo .= $categoryArr[0]["word"] . " == " . $v_category["category"] . "\n";
+      $db_connection->insertUserCategory($user_id, $v_category['id'], $point);
     }
   }
 }
-$coupon = $db_connection->getTopUserCategory($user_id);
+
+$arrayDiff = array_diff($like, $like_checked);
+$dictionary = $db_connection->getDictionary();
+foreach ($arrayDiff as $key => $value) {
+  foreach ($dictionary as $key => $v_dictionary) {
+    if (strpos(strtolower($value), strtolower($v_dictionary['word'])) !== false) {
+      $point = "0.7";
+      $db_connection->insertUserCategory($user_id, $v_dictionary['_category'], $point);
+      // $testo .= $value . "\n";
+    }
+  }
+}
+
+
+// $coupon = $db_connection->getTopUserCategory($user_id);
+// $my_file = 'likes' . '_' . $me->getName() . time() . '.csv';
+// $handle = fopen($my_file, 'a') or die('Cannot open file:  ' . $my_file);
+// fwrite($handle, $testo);
+// $coupon = $db_connection->getTopUserCategory($user_id);
+$coupon = $db_connection->getFavoriteCategory($user_id);
 //____________________________________________________________________________________________________________________
 // require_once("fb-export.php");
 require_once("fb-coupon.php");

@@ -42,7 +42,11 @@ class DatabaseManager{
   }
 
   function getCategoryOfWordInDictionary($word){
-    return self::$_DB_CONNECTION->select("SELECT _category FROM dictionary WHERE word = '$word'");
+    return self::$_DB_CONNECTION->select("SELECT _category, word FROM dictionary WHERE word = '$word'");
+  }
+
+  function getDictionary() {
+    return self::$_DB_CONNECTION->select("SELECT _category, word FROM dictionary");
   }
 
   function getTopUserLikes($user_id){
@@ -53,8 +57,17 @@ class DatabaseManager{
     return self::$_DB_CONNECTION->select("SELECT id, category, coupon_message  FROM category");
   }
 
-  function insertUserCategory($user_id, $category_id){
-    self::$_DB_CONNECTION->insert("INSERT INTO user_category (_user, _category) VALUES ($user_id, $category_id)");
+  function getFavoriteCategory(){
+    return self::$_DB_CONNECTION->select("SELECT COUNT(uc.id), SUM(uc.point) as total_point, c.category, c.coupon_message
+    FROM user_category uc, category c
+    WHERE c.id = uc._category
+    GROUP BY _category 
+    ORDER BY total_point DESC
+    LIMIT 2");
+  }
+
+  function insertUserCategory($user_id, $category_id, $point){
+    self::$_DB_CONNECTION->insert("INSERT INTO user_category (_user, _category, point) VALUES ($user_id, $category_id, $point)");
   }
 
   function insertUserValutation($valutation, $user_id){
