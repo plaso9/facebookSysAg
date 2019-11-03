@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Ott 30, 2019 alle 17:40
+-- Creato il: Ott 31, 2019 alle 23:33
 -- Versione del server: 10.3.16-MariaDB
 -- Versione PHP: 7.3.7
 
@@ -65,6 +65,9 @@ CREATE TABLE `dictionary` (
   `word` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dump dei dati per la tabella `dictionary`
+--
 INSERT INTO `dictionary` (`id`, `_category`, `word`) VALUES
 (1, 2, 'Atleta'),
 (2, 2, 'Squadra'),
@@ -113,7 +116,171 @@ INSERT INTO `dictionary` (`id`, `_category`, `word`) VALUES
 (45, 4, 'California'),
 (46, 9, 'MTV'),
 (47, 8, 'Telecomunicazioni'),
-(48, 6, 'Biblioteca');
+(48, 6, 'Biblioteca'),
+(49, 1, 'Shopping'),
+(50, 2, 'Ballerino'),
+(51, 2, 'Ballerina'),
+(52, 2, 'Danza'),
+(53, 7, 'Bevande'),
+(54, 4, 'Tour operator'),
+(55, 5, 'Bellezza'),
+(56, 7, 'Pescatori'),
+(57, 7, 'Cucina'),
+(58, 7, 'Fast Food'),
+(59, 7, 'Risto-pub'),
+(60, 7, 'Hamburger'),
+(61, 7, 'Pizzeria'),
+(62, 2, 'Palestra'),
+(63, 7, 'Paninoteca'),
+(64, 7, 'Pub'),
+(65, 1, 'Negozio'),
+(66, 1, 'Vintage'),
+(67, 5, 'Nutrizionista'),
+(68, 5, 'Dietista'),
+(69, 2, 'Fitness'),
+(70, 2, 'Automobili'),
+(71, 2, 'Concessionaria'),
+(72, 7, 'Birra'),
+(73, 2, 'Volley'),
+(74, 2, 'Hip Hop'),
+(75, 3, 'Spettacolo'),
+(76, 5, 'Dottore'),
+(77, 5, 'Medico'),
+(78, 2, 'Allenatore'),
+(79, 3, 'Comico'),
+(80, 10, 'Videogioco'),
+(81, 6, 'Libro'),
+(82, 10, 'Giochi'),
+(83, 8, 'App'),
+(84, 8, 'Provider'),
+(85, 8, 'Internet'),
+(86, 4, 'CittÃ '),
+(87, 4, 'New York'),
+(88, 2, 'Fantacalcio'),
+(89, 8, 'Computer (brand)'),
+(90, 8, 'Elettronica'),
+(91, 5, 'Vitamine/integratori'),
+(92, 7, 'Vini/liquori'),
+(93, 8, 'Telefono/tablet'),
+(94, 7, 'Cucina/cucinare'),
+(95, 5, 'Malattie'),
+(96, 7, 'Agricoltura'),
+(97, 7, 'Gastronomia'),
+(98, 6, 'Istruzione'),
+(99, 8, 'Scienza'),
+(100, 6, 'Riviste'),
+(101, 9, 'Orchestra'),
+(102, 8, 'Scienziato'),
+(103, 10, 'Gamer'),
+(104, 6, 'Autore'),
+(105, 7, 'Lounge'),
+(106, 6, 'Editore'),
+(107, 8, 'Fotografia'),
+(108, 8, 'Cellulari'),
+(109, 10, 'Giocattoli'),
+(110, 5, 'Optometrista'),
+(111, 6, 'Scuola'),
+(112, 4, 'Turistiche'),
+(113, 4, 'Berlino'),
+(114, 4, 'Amsterdam'),
+(115, 4, 'Beach'),
+(116, 4, 'Dubai'),
+(117, 9, 'Eminem'),
+(118, 1, 'Gioielleria'),
+(119, 10, 'Fantasy'),
+(120, 8, 'hi-tech'),
+(121, 8, 'Samsung'),
+(122, 8, 'Apple'),
+(123, 1, 'Business'),
+(124, 2, 'Concessionario'),
+(125, 4, 'Maldives'),
+(126, 2, 'Motor'),
+(127, 4, 'Weekend'),
+(128, 4, 'America'),
+(129, 4, 'Europa'),
+(130, 8, 'Programmatore'),
+(131, 2, 'Capitano'),
+(132, 2, 'Sport'),
+(133, 10, 'Game'),
+(134, 7, 'Mangio'),
+(135, 7, 'Alimentare'),
+(136, 7, 'Alimento'),
+(137, 1, 'Fashion'),
+(138, 4, 'Volo'),
+(139, 1, 'Scarpe'),
+(140, 1, 'Scarpa'),
+(141, 9, 'Canzoni'),
+(142, 7, 'Piatto'),
+(143, 7, 'Pietanza'),
+(144, 7, 'Street-Food'),
+(145, 7, 'Panzerotto'),
+(146, 7, 'Pizza'),
+(147, 4, 'Aereo'),
+(148, 4, 'Treno'),
+(149, 4, 'Museo'),
+(150, 4, 'Visitare'),
+(151, 1, 'Seta'),
+(152, 1, 'Jeans'),
+(153, 1, 'Felpa'),
+(154, 1, 'Sneakers'),
+(155, 1, 'Borse'),
+(156, 1, 'Maglia'),
+(157, 1, 'Pantaloni'),
+(158, 1, 'Blazer'),
+(159, 9, 'Vinile'),
+(160, 9, 'CD'),
+(161, 9, 'Album'),
+(162, 9, 'Techno'),
+(163, 9, 'Rock'),
+(164, 9, 'Indie'),
+(165, 5, 'Pressione'),
+(166, 5, 'Diabete'),
+(167, 2, 'Tennis'),
+(168, 2, 'UsOpen'),
+(169, 1, 'Tacchi'),
+(170, 1, 'Infradito'),
+(171, 4, 'Pasticceria'),
+(172, 7, 'Cupcake'),
+(173, 8, 'Blockchain'),
+(174, 10, 'Roleplay'),
+(175, 8, 'Tecnologia'),
+(176, 8, 'Android'),
+(177, 8, 'Development'),
+(178, 9, 'Band'),
+(179, 10, 'Gaming'),
+(180, 9, 'Concerti'),
+(181, 4, 'Hotel'),
+(182, 10, 'Gioca'),
+(183, 2, 'Audi'),
+(184, 3, 'Rocky'),
+(185, 8, 'Instagram'),
+(186, 1, 'Stile'),
+(187, 8, 'Fotografici'),
+(188, 8, 'Facebook'),
+(189, 8, 'Computer'),
+(190, 3, 'Telefilm'),
+(191, 8, 'Web'),
+(192, 3, 'Cinematografico'),
+(193, 2, 'Bomber'),
+(194, 5, 'Fotoepilazione'),
+(195, 5, 'Curarsi'),
+(196, 8, 'Blog'),
+(197, 7, 'Pesce'),
+(198, 7, 'Food'),
+(199, 1, 'Moda'),
+(200, 7, 'Caffeina'),
+(201, 1, 'Lingerie'),
+(202, 8, 'Webtalent'),
+(203, 9, 'Vocale'),
+(204, 9, 'Inedito'),
+(205, 4, 'Holidays'),
+(206, 4, 'Boat'),
+(207, 7, 'Tavola'),
+(208, 8, 'Videomaker'),
+(209, 4, 'Luoghi'),
+(210, 4, 'Luogo');
+
+
 
 -- --------------------------------------------------------
 
@@ -158,7 +325,7 @@ CREATE TABLE `likes` (
 CREATE TABLE `likes_description` (
   `nome_categoria` varchar(100) NOT NULL,
   `description` text NOT NULL,
-  `like_date` varchar(100) NOT NULL,
+  `like_date` datetime NOT NULL,
   `user_id` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -197,68 +364,9 @@ CREATE TABLE `user` (
 CREATE TABLE `user_category` (
   `id` int(11) NOT NULL,
   `_user` varchar(100) DEFAULT NULL,
-  `_category` int(11) NOT NULL
+  `_category` int(11) NOT NULL,
+  `point` varchar(250) NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dump dei dati per la tabella `user_category`
---
-
-INSERT INTO `user_category` (`id`, `_user`, `_category`) VALUES
-(1, '2461147887302139', 10),
-(2, '2461147887302139', 9),
-(3, '2461147887302139', 1),
-(4, '2461147887302139', 2),
-(5, '2461147887302139', 7),
-(6, '2461147887302139', 7),
-(7, '2461147887302139', 10),
-(8, '2461147887302139', 9),
-(9, '2461147887302139', 1),
-(10, '2461147887302139', 2),
-(11, '2461147887302139', 7),
-(12, '2461147887302139', 7),
-(13, '2461147887302139', 10),
-(14, '2461147887302139', 9),
-(15, '2461147887302139', 1),
-(16, '2461147887302139', 2),
-(17, '2461147887302139', 7),
-(18, '2461147887302139', 7),
-(19, '2461147887302139', 10),
-(20, '2461147887302139', 9),
-(21, '2461147887302139', 1),
-(22, '2461147887302139', 2),
-(23, '2461147887302139', 7),
-(24, '2461147887302139', 7),
-(25, '2461147887302139', 10),
-(26, '2461147887302139', 9),
-(27, '2461147887302139', 1),
-(28, '2461147887302139', 2),
-(29, '2461147887302139', 7),
-(30, '2461147887302139', 7),
-(31, '2461147887302139', 10),
-(32, '2461147887302139', 9),
-(33, '2461147887302139', 1),
-(34, '2461147887302139', 2),
-(35, '2461147887302139', 7),
-(36, '2461147887302139', 7),
-(37, '2461147887302139', 10),
-(38, '2461147887302139', 9),
-(39, '2461147887302139', 1),
-(40, '2461147887302139', 2),
-(41, '2461147887302139', 7),
-(42, '2461147887302139', 7),
-(43, '2461147887302139', 10),
-(44, '2461147887302139', 9),
-(45, '2461147887302139', 1),
-(46, '2461147887302139', 2),
-(47, '2461147887302139', 7),
-(48, '2461147887302139', 7),
-(49, '2461147887302139', 10),
-(50, '2461147887302139', 9),
-(51, '2461147887302139', 1),
-(52, '2461147887302139', 2),
-(53, '2461147887302139', 7),
-(54, '2461147887302139', 7);
 
 -- --------------------------------------------------------
 
@@ -347,13 +455,13 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT per la tabella `dictionary`
 --
 ALTER TABLE `dictionary`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
 
 --
 -- AUTO_INCREMENT per la tabella `user_category`
 --
 ALTER TABLE `user_category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT per la tabella `valutation`

@@ -16,7 +16,7 @@
             <a class="nav-link" href="fb-stats.php">Vedi Statistiche</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">Pricing</a>
+            <a class="nav-link" href="fb-last_coupon.php">Altri possibili coupon</a>
         </li>
         </ul>
         <span class="navbar-text">Benvenuto <?= $user_name ?></span>
@@ -25,17 +25,23 @@
 
 <div class="container" style="max-width: inherit;">
 <?php foreach ($coupon as $key => $value) : ?>
+    <?php
+    $percentuale = ($value["total_point"] * 100)/ $page_analyzed;
+    $perc_appross = round($percentuale);
+    if ($perc_appross >= 10) :
+    ?>
     <div class="row" style="padding:2%">
         <div class="col-2"></div>
         <div class="col-8">
             <div class="card text-center" id="coupon-card-<?= $value['category'] ?>">
                 <div class="card-header">
-                    <p><b><?= utf8_encode($value['coupon_message']) ?></b></p>
+                    <p><b>Ciao, abbiamo analizzato i tuoi like ed abbiamo pensato di fornirti questo coupon</b></p>
+                    <p><b>poichè tale categoria con il <?= $perc_appross ?>% dei tuoi like</b></p>
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title">Ciao, abbiamo cura dei nostri consumatori ed abbiamo pensato di fornirti questo coupon</h5>
+                    <h4 class="card-title"><?= utf8_encode($value['coupon_message']) ?></h4>
                     <p class="card-text">Speriamo tu ne sia contento, e che possa usufruirne</p>
-                    <p class="card-text"><b><?= generateCoupon($value['category']) ?></b></p>
+                    <p class="card-text"><b style="font-size:1.5em;"><?= generateCoupon($value['category']) ?></b></p>
                     <p class="card-text">Segna l'indice di gradimento</p>
                     <div class="slidecontainer">
                         <input type="range" id="coupon-valutation-<?= $value['category'] ?>" min="1" max="5" value="1" class="slider" id="rangeBar">
@@ -49,7 +55,39 @@
         </div>
         <div class="col-2"></div>
     </div>
-<?php endforeach; ?>
+    <?php endif; ?>
+    <?php endforeach; ?>
+    <div class="row" style="padding:2%">
+        <div class="col-12">
+            <p><b>In base ai tuoi gusti, reputi piu appropriate queste categorie rispetto alle precedenti?</b></p>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Category</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($lastcategory as $key => $value) : ?>
+                <tr>
+                    <td><?= $value["category"] ?></td>
+                    <td>
+                        <div class="form-check">
+                            <label class="radio-inline">
+                                <input type="radio" name="optradio">SI
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="optradio">NO
+                            </label>
+                        </div>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+        <button class="btn btn-primary" onclick="submitVal()">Invia</button>
+    </div>
 </div>
 <footer class="footer discount-background">
     <div class="container" style="max-width: inherit;">
@@ -94,6 +132,10 @@ function insertValutationAjax(valutation) {
             console.log("Ok");
         }
     });
+}
+
+function submitVal() {
+    window.location.href = "http://localhost/facebooksysag/fb-thanks.php";
 }
 
 </script>
