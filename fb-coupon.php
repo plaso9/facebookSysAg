@@ -4,16 +4,13 @@
 <!-- Just an image -->
 
 <nav class="navbar navbar-expand-lg navbar-light discount-background">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="fb-login.php">
         <img src="upload/discounts.jpg" width="90" height="30" alt="">
     </a>
     <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mr-auto">
         <li class="nav-item">
             <a class="nav-link" href="fb-stats.php">Vedi Statistiche</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="fb-last_coupon.php">Altri possibili coupon</a>
         </li>
         </ul>
         <span class="navbar-text">Benvenuto <?= $user_name ?></span>

@@ -156,27 +156,49 @@ $users_answer = getUserAnswers($db_connection);
           }
 
           function generateData(answers) {
-            var i;
+            var j = 1;
             var data = [];
-            var user, user_temp = "";
+            var user = "";
             var ans = 0.00;
             var media = 0.00;
 
-            for (i = 0; i < answers.length; i++) {
+            // for (i = 0; i < answers.length; i++) {
+            //   for (const [key, value] of Object.entries(answers[i])) {
+            //     user = String(key);
+            //     ans = parseFloat(value);
+            //   }
+            //   if(user != user_temp){
+            //     media += ans;
+            //   }else{
+            //     media +=ans;
+            //     media = media/2;
+            //     data.push(media);
+            //     var media = 0.00;
+            //   }
+            //   user_temp = user;
+      			// }
+            for (var i = 0; i < answers.length; i++) {
               for (const [key, value] of Object.entries(answers[i])) {
                 user = String(key);
                 ans = parseFloat(value);
-              }
-              if(user != user_temp){
                 media += ans;
-              }else{
-                media +=ans;
-                media = media/2;
-                data.push(media);
-                var media = 0.00;
+                if(j%5==0){
+                  media = media/5.00;
+                  console.log(media);
+                  data.push(media);
+                  media = 0.00;
+                }
+                j++;
               }
-              user_temp = user;
-      			}
+            }
+
+
+
+
+
+
+
+
 			      return data;
       		}
 
