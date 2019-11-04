@@ -17,9 +17,6 @@ $users_answer = getUserAnswers($db_connection);
     </a>
     <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-            <a class="nav-link" href="login.php">Home</a>
-        </li>
         <li class="nav-item active">
             <a class="nav-link" href="fb-stats.php">Vedi Statistiche</a>
         </li>
