@@ -13,11 +13,14 @@ $fb = new Facebook\Facebook([
   ]);
 
 $helper = $fb->getRedirectLoginHelper();
-$actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-$link_cut = str_replace("/login.php","",$actual_link);
+$protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http";
+$host = $_SERVER["HTTP_HOST"];
+$dir_root = $protocol . "://" . $host . "/facebooksysag"; 
+
 $permissions = ['email']; // Optional permissions
 //$loginUrl = $helper->getLoginUrl('http://localhost/facebooksysag/fb-callback.php', $permissions);
-$loginUrl = $helper->getLoginUrl($link_cut.'/fb-callback.php', $permissions);
+$loginUrl = $helper->getLoginUrl($dir_root.'/fb-callback.php', $permissions);
+
 ?>
 
 <div class="container">
@@ -28,7 +31,7 @@ $loginUrl = $helper->getLoginUrl($link_cut.'/fb-callback.php', $permissions);
     <form class="discount-background">
         <div class="row" style="padding:1%">
             <div class="col-5 col-sm-5">
-                <img class="img-adapter" src="http://localhost/facebooksysag/upload/discounts.jpg" alt="Discount">
+                <img class="img-adapter" src="<?= $dir_root ?>/upload/discounts.jpg" alt="Discount">
             </div>
             <div class="col-7 col-sm-7">
                 <div class="row" style="padding:1%">
