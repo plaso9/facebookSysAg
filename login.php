@@ -13,9 +13,9 @@ $fb = new Facebook\Facebook([
   ]);
 
 $helper = $fb->getRedirectLoginHelper();
-$protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http";
+$protocol = 'https';
 $host = $_SERVER["HTTP_HOST"];
-$dir_root = $protocol . "://" . $host . "/facebooksysag"; 
+$dir_root = $protocol . "://" . $host . "/facebooksysag";
 
 $permissions = ['email']; // Optional permissions
 //$loginUrl = $helper->getLoginUrl('http://localhost/facebooksysag/fb-callback.php', $permissions);
@@ -68,7 +68,7 @@ $loginUrl = $helper->getLoginUrl($dir_root.'/fb-callback.php', $permissions);
                     </div>
                     <div class="col-3 col-sm-3"></div>
                 </div>
-            </div>        
+            </div>
         </div>
     </form>
 </div>

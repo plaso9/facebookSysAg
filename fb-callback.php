@@ -4,9 +4,9 @@
 include ('utils/DatabaseManager.php');
 include ('utils/FacebookUtils.php');
 
-$protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http";
+$protocol = 'https';
 $host = $_SERVER["HTTP_HOST"];
-$dir_root = $protocol . "://" . $host . "/facebooksysag"; 
+$dir_root = $protocol . "://" . $host . "/facebooksysag";
 
 $db_connection = new DatabaseManager();
 $facebook = new FacebookManager();

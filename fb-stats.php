@@ -207,7 +207,7 @@ $users_answer = getUserAnswers($db_connection);
 </div>
 
 <!-- FOOTER -->
-<footer class="footer discount-background">
+<!-- <footer class="footer discount-background">
     <div class="container" style="max-width: inherit;">
         <div class="row" style="padding:2%; color:white;">
             <div class="col-12">
@@ -215,7 +215,7 @@ $users_answer = getUserAnswers($db_connection);
             </div>
         </div>
     </div>
-<footer>
+<footer> -->
 
 <?php
 

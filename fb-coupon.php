@@ -90,7 +90,7 @@
         <button class="btn btn-primary" onclick="submitVal()">Invia</button>
     </div>
 </div>
-<footer class="footer discount-background">
+<!-- <footer class="footer discount-background">
     <div class="container" style="max-width: inherit;">
         <div class="row" style="padding:2%; color:white;">
             <div class="col-12">
@@ -98,7 +98,7 @@
             </div>
         </div>
     </div>
-<footer>
+<footer> -->
 
 <script>
 var slider = document.getElementById("rangeBar");
