@@ -377,7 +377,8 @@ CREATE TABLE `user_category` (
 CREATE TABLE `valutation` (
   `id` int(11) NOT NULL,
   `_user` varchar(250) NOT NULL,
-  `valutation` varchar(100) NOT NULL
+  `valutation` varchar(100) NOT NULL,
+  `_category` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --

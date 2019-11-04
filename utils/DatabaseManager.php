@@ -58,7 +58,7 @@ class DatabaseManager{
   }
 
   function getFavoriteCategory($user_id){
-    return self::$_DB_CONNECTION->select("SELECT COUNT(uc.id), SUM(uc.point) as total_point, c.category, c.coupon_message
+    return self::$_DB_CONNECTION->select("SELECT COUNT(uc.id), SUM(uc.point) as total_point, c.category, c.id, c.coupon_message
     FROM user_category uc, category c
     WHERE c.id = uc._category AND _user = $user_id
     GROUP BY _category 
@@ -67,7 +67,7 @@ class DatabaseManager{
   }
 
   function getLastFavoriteCategory($user_id){
-    return self::$_DB_CONNECTION->select("SELECT COUNT(uc.id), SUM(uc.point) as total_point, c.category, c.coupon_message
+    return self::$_DB_CONNECTION->select("SELECT COUNT(uc.id), SUM(uc.point) as total_point, c.category, c.id, c.coupon_message
     FROM user_category uc, category c
     WHERE c.id = uc._category AND _user = $user_id
     GROUP BY _category 
@@ -83,8 +83,12 @@ class DatabaseManager{
     self::$_DB_CONNECTION->insert("INSERT INTO user_category (_user, _category, point) VALUES ($user_id, $category_id, $point)");
   }
 
-  function insertUserValutation($valutation, $user_id){
-    self::$_DB_CONNECTION->insert("INSERT INTO valutation(_user, valutation) VALUES ('$user_id', '$valutation')");
+  function insertUserValutation($valutation, $user_id, $category){
+    self::$_DB_CONNECTION->insert("INSERT INTO valutation(_user, valutation, _category) VALUES ('$user_id', '$valutation', '$category')");
+  }
+
+  function insertUserValutationFromModal($valutation, $user_id, $category){
+    self::$_DB_CONNECTION->insert("INSERT INTO valutation(_user, valutation, _category) VALUES ('$user_id', '$valutation', '$category')");
   }
 
   function getTopUserCategory($user_id){
