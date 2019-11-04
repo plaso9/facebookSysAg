@@ -27,7 +27,7 @@ function insertWordInDictionary($db_connection){
 
 <nav class="navbar navbar-expand-lg navbar-light discount-background">
     <a class="navbar-brand" href="#">
-        <img src="http://localhost/facebooksysag/upload/discounts.jpg" width="90" height="30" alt="">
+        <img src="/upload/discounts.jpg" width="90" height="30" alt="">
     </a>
     <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mr-auto">

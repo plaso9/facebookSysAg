@@ -5,7 +5,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-light discount-background">
     <a class="navbar-brand" href="#">
-        <img src="http://localhost/facebooksysag/upload/discounts.jpg" width="90" height="30" alt="">
+        <img src="upload/discounts.jpg" width="90" height="30" alt="">
     </a>
     <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mr-auto">
@@ -24,6 +24,7 @@
 </nav>
 
 <div class="container" style="max-width: inherit;">
+<input type="hidden" id="dir-root" value="<?= $dir_root ?>">
 <?php foreach ($coupon as $key => $value) : ?>
     <?php
     $percentuale = ($value["total_point"] * 100)/ $page_analyzed;
@@ -109,16 +110,17 @@ slider.oninput = function() {
 }
 
 function hideCoupon(category_name){
-    
+    var dir_root = document.getElementById("dir-root").value;
     var el = "coupon-card-" + category_name;
     var el_val = "coupon-valutation-" + category_name;
     var valutation = document.getElementById(el_val).value;
     document.getElementById(el).style.display = "none";
-    insertValutationAjax(valutation);
+    insertValutationAjax(dir_root, valutation);
 }
 
-function insertValutationAjax(valutation) {
-    var url = "http://localhost/facebooksysag/fb-valutation.php";
+function insertValutationAjax(dir_root, valutation) {
+    var url = dir_root + "/fb-valutation.php";
+    console.log(url);
     var user_id = "<?= $user_id ?>";
     var data = {
         "coupon-valutation-value" : valutation,

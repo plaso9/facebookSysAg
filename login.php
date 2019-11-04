@@ -31,7 +31,7 @@ $loginUrl = $helper->getLoginUrl($dir_root.'/fb-callback.php', $permissions);
     <form class="discount-background">
         <div class="row" style="padding:1%">
             <div class="col-5 col-sm-5">
-                <img class="img-adapter" src="<?= $dir_root ?>/upload/discounts.jpg" alt="Discount">
+                <img class="img-adapter" src="upload/discounts.jpg" alt="Discount">
             </div>
             <div class="col-7 col-sm-7">
                 <div class="row" style="padding:1%">
