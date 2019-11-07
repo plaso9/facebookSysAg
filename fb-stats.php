@@ -211,19 +211,7 @@ $users_answer = getUserAnswers($db_connection);
     </div>
 </div>
 
-<!-- FOOTER -->
-<!-- <footer class="footer discount-background">
-    <div class="container" style="max-width: inherit;">
-        <div class="row" style="padding:2%; color:white;">
-            <div class="col-12">
-                <p>Copyright 2019 - DGM Group</p>
-            </div>
-        </div>
-    </div>
-<footer> -->
-
 <?php
-
 function getAnswerByValutation($db){
   $valutations = $db->countAnswer();
   $result = [];
@@ -238,12 +226,11 @@ function getUserAnswers($db){
   $answers = $db->getAnswers();
   $result = [];
   foreach ($answers as $key => $value) {
-    $val = array($value['_user'] => $value['valutation']);
+    $val = array($value['nome'] => $value['valutation']);
     array_push($result, $val);
   }
   return $result;
 }
-
 ?>
 
 <script src="/facebooksysag/lib/jquery/jquery-3.1.1.min.js"></script>

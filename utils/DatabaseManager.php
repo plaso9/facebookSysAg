@@ -28,7 +28,7 @@ class DatabaseManager{
   function addWord($word, $category_id){
     self::$_DB_CONNECTION->insert("INSERT INTO dictionary(_category, word) VALUES ($category_id, '$word')");
   }
-  
+
   function wordAlreadyExist($word){
     return self::$_DB_CONNECTION->select("SELECT word FROM dictionary WHERE word = '$word'");
   }
@@ -61,7 +61,7 @@ class DatabaseManager{
     return self::$_DB_CONNECTION->select("SELECT COUNT(uc.id), SUM(uc.point) as total_point, c.category, c.id, c.coupon_message
     FROM user_category uc, category c
     WHERE c.id = uc._category AND _user = $user_id
-    GROUP BY _category 
+    GROUP BY _category
     ORDER BY total_point DESC
     LIMIT 2");
   }
@@ -70,7 +70,7 @@ class DatabaseManager{
     return self::$_DB_CONNECTION->select("SELECT COUNT(uc.id), SUM(uc.point) as total_point, c.category, c.id, c.coupon_message
     FROM user_category uc, category c
     WHERE c.id = uc._category AND _user = $user_id
-    GROUP BY _category 
+    GROUP BY _category
     ORDER BY total_point
     LIMIT 8");
   }
@@ -121,8 +121,9 @@ class DatabaseManager{
   }
 
   function getAnswers(){
-    return self::$_DB_CONNECTION->select("SELECT _user, valutation FROM valutation ORDER BY _user");
+    return self::$_DB_CONNECTION->select("SELECT user.nome, valutation.valutation FROM valutation INNER JOIN user ON valutation._user=user.id_user ORDER BY user.nome");
   }
+
 
   function closeDbConnection(){
     self::$_DB_CONNECTION->closeConnection();
