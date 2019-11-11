@@ -84,7 +84,7 @@ class DatabaseManager{
   }
 
   function insertUserValutation($valutation, $user_id, $category){
-    self::$_DB_CONNECTION->insert("INSERT INTO valutation(_user, valutation, _category) VALUES ('$user_id', '$valutation', '$category')");
+    self::$_DB_CONNECTION->insert("INSERT INTO valutation(_user, valutation, _category, _coupon) VALUES ('$user_id', '$valutation', '$category', 1)");
   }
 
   function insertUserValutationFromModal($valutation, $user_id, $category){
