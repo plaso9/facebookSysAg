@@ -117,12 +117,20 @@ class DatabaseManager{
   }
 
   function countAnswer(){
-    return self::$_DB_CONNECTION->select("SELECT valutation, count(id) FROM valutation GROUP BY valutation ORDER BY valutation");
+    return self::$_DB_CONNECTION->select("SELECT valutation, count(id) FROM valutation WHERE _coupon=1 GROUP BY valutation ORDER BY valutation");
   }
 
   function getAnswers(){
-    return self::$_DB_CONNECTION->select("SELECT user.nome, valutation.valutation FROM valutation INNER JOIN user ON valutation._user=user.id_user ORDER BY user.nome");
+    return self::$_DB_CONNECTION->select("SELECT user.nome, valutation.valutation FROM valutation INNER JOIN user ON valutation._user=user.id_user WHERE valutation._coupon=1 ORDER BY user.nome");
   }
+
+  // function countAnswer(){
+  //   return self::$_DB_CONNECTION->select("SELECT valutation, count(id) FROM valutation GROUP BY valutation ORDER BY valutation");
+  // }
+  //
+  // function getAnswers(){
+  //   return self::$_DB_CONNECTION->select("SELECT user.nome, valutation.valutation FROM valutation INNER JOIN user ON valutation._user=user.id_user ORDER BY user.nome");
+  // }
 
 
   function closeDbConnection(){
