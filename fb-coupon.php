@@ -10,7 +10,10 @@
     <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-            <a class="nav-link" href="fb-stats.php">Vedi Statistiche</a>
+            <a class="nav-link" href="fb-stats.php">Statistiche Sistema</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="fb-user-stats.php">Statistiche Utenti</a>
         </li>
         </ul>
         <span class="navbar-text">Benvenuto <?= $user_name ?></span>

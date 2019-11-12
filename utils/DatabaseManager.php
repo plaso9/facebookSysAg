@@ -116,6 +116,7 @@ class DatabaseManager{
     }
   }
 
+  // FUNZIONI PER LE STATISTICHE DEL SISTEMA
   function countAnswer(){
     return self::$_DB_CONNECTION->select("SELECT valutation, count(id) FROM valutation WHERE _coupon=1 GROUP BY valutation ORDER BY valutation");
   }
@@ -124,13 +125,14 @@ class DatabaseManager{
     return self::$_DB_CONNECTION->select("SELECT user.nome, valutation.valutation FROM valutation INNER JOIN user ON valutation._user=user.id_user WHERE valutation._coupon=1 ORDER BY user.nome");
   }
 
-  // function countAnswer(){
-  //   return self::$_DB_CONNECTION->select("SELECT valutation, count(id) FROM valutation GROUP BY valutation ORDER BY valutation");
-  // }
-  //
-  // function getAnswers(){
-  //   return self::$_DB_CONNECTION->select("SELECT user.nome, valutation.valutation FROM valutation INNER JOIN user ON valutation._user=user.id_user ORDER BY user.nome");
-  // }
+  // FUNZIONI PER LE STATISTICHE DEGLI UTENTI
+  function countCategory(){
+    return self::$_DB_CONNECTION->select("SELECT category.category, count(valutation.id) AS count FROM valutation INNER JOIN category ON valutation._category=category.id GROUP BY _category ORDER BY count(valutation.id) DESC");
+  }
+
+  function getCategory(){
+    return self::$_DB_CONNECTION->select("SELECT category.category, AVG(valutation.valutation) AS avg FROM valutation INNER JOIN category ON valutation._category=category.id GROUP BY category.category ORDER BY avg DESC");
+  }
 
 
   function closeDbConnection(){

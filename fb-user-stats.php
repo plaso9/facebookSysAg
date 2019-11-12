@@ -7,8 +7,8 @@ include ('utils/DatabaseManager.php');
 
 $db_connection = new DatabaseManager();
 
-$valutations = getAnswerByValutation($db_connection);
-$users_answer = getUserAnswers($db_connection);
+$category = getCategoryByValutation($db_connection);
+$users_answer = getUserCategory($db_connection);
 ?>
 
 <nav class="navbar navbar-expand-lg navbar-light discount-background">
@@ -35,34 +35,42 @@ $users_answer = getUserAnswers($db_connection);
         <div class="col-8">
 
         <!-- GRAFICO 1 -->
-        <canvas id="doughnut-chart" width="800" height="450"></canvas>
+        <canvas id="bar-chart-horizontal" width="800" height="450"></canvas>
         <script>
-        var ctx = document.getElementById("doughnut-chart");
-        var valutations = <?php echo json_encode($valutations); ?>;
+        var ctx = document.getElementById("bar-chart-horizontal");
+        var category = <?php echo json_encode($category); ?>;
 
         var data = {
-          labels: generateDoughnutLabel(valutations),
+          labels: generateDoughnutLabel(category),
           datasets: [{
-            label: "Valutazione Gradimento",
-            data: generateDoughnutData(valutations),
-            backgroundColor : generateBackgroundColor(valutations)
+            label: "Valutazione Categorie",
+            data: generateDoughnutData(category),
+            backgroundColor : generateBackgroundColor(category)
           }]
         };
 
         var doughnutChart = new Chart(ctx, {
-              type: 'doughnut',
+              type: 'horizontalBar',
               data: data,
               options: {
+                legend: { display: false },
                 title: {
                   display: true,
-                  text: 'Risposte degli utenti sul gradimento dei coupon ricevuti'
+                  text: 'Categorie preferite dagli Utenti'
+                },
+                scales: {
+                    xAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
                 }
               }
           });
 
-          function generateBackgroundColor(valutations) {
+          function generateBackgroundColor(len) {
             var data = [];
-            for (i = 0; i < (valutations.length); i++) {
+            for (i = 0; i < (len.length); i++) {
               data.push(getRandomColor());
       			}
 			      return data;
@@ -77,13 +85,13 @@ $users_answer = getUserAnswers($db_connection);
               return color;
           }
 
-          function generateDoughnutData(valutations) {
+          function generateDoughnutData(category) {
             var i;
             var data = [];
             var counter = 0;
 
-            for (i = 0; i < valutations.length; i++) {
-              for (const [key, value] of Object.entries(valutations[i])) {
+            for (i = 0; i < category.length; i++) {
+              for (const [key, value] of Object.entries(category[i])) {
                 counter = parseFloat(value);
                 data.push(counter);
               }
@@ -91,14 +99,14 @@ $users_answer = getUserAnswers($db_connection);
 			      return data;
       		}
 
-          function generateDoughnutLabel(valutations){
+          function generateDoughnutLabel(category){
             var i;
             var data = [];
             var val = "";
-            for (i = 0; i < valutations.length; i++) {
-              for (const [key, value] of Object.entries(valutations[i])) {
+            for (i = 0; i < category.length; i++) {
+              for (const [key, value] of Object.entries(category[i])) {
                 val = String(key);
-                data.push("Gradimento " + val);
+                data.push(val);
               }
       			}
 			      return data;
@@ -127,7 +135,7 @@ $users_answer = getUserAnswers($db_connection);
               options: {
                 title: {
                   display: true,
-                  text: 'Media risposte gradimento per Utente'
+                  text: 'Media risposte per Categoria'
                 },
                 legend: { display: false },
                 responsive: true,
@@ -143,7 +151,7 @@ $users_answer = getUserAnswers($db_connection);
 
           function generateBackgroundColor(answers) {
             var data = [];
-            for (i = 0; i < (answers.length)/2; i++) {
+            for (i = 0; i < (answers.length); i++) {
               data.push(getRandomColor());
       			}
 			      return data;
@@ -215,21 +223,21 @@ $users_answer = getUserAnswers($db_connection);
 </div>
 
 <?php
-function getAnswerByValutation($db){
-  $valutations = $db->countAnswer();
+function getCategoryByValutation($db){
+  $valutations = $db->countCategory();
   $result = [];
   foreach ($valutations as $valutation => $value) {
-    $val = array($value['valutation'] => $value['count(id)']);
+    $val = array($value['category'] => $value['count']);
     array_push($result, $val);
   }
   return $result;
 }
 
-function getUserAnswers($db){
-  $answers = $db->getAnswers();
+function getUserCategory($db){
+  $answers = $db->getCategory();
   $result = [];
   foreach ($answers as $key => $value) {
-    $val = array($value['nome'] => $value['valutation']);
+    $val = array($value['category'] => $value['avg']);
     array_push($result, $val);
   }
   return $result;
